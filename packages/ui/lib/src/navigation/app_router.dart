@@ -5,6 +5,7 @@ import '../features/conversation/presentation/conversation_list_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/lessons/presentation/lessons_screen.dart';
 import '../features/lessons/presentation/study_session_screen.dart';
+import '../features/local_tutor/presentation/local_tutor_screen.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/progress/presentation/progress_screen.dart';
 import '../features/quiz/presentation/quiz_screen.dart';
@@ -34,6 +35,7 @@ class AppRoutes {
   static const progress = '/progress';
   static const search = '/search';
   static const settings = '/settings';
+  static const localTutor = '/local-tutor';
   static String wordDetail(int id) => '/word/$id';
   static String conversationDetail(int id) => '/conversation/$id';
   static String practiceWord(int id) => '/practice/word/$id';
@@ -67,6 +69,7 @@ GoRouter buildAppRouter({required bool onboardingComplete}) {
       GoRoute(path: AppRoutes.progress, builder: (context, state) => const ProgressScreen()),
       GoRoute(path: AppRoutes.search, builder: (context, state) => const SearchScreen()),
       GoRoute(path: AppRoutes.settings, builder: (context, state) => const SettingsScreen()),
+      GoRoute(path: AppRoutes.localTutor, builder: (context, state) => const LocalTutorScreen()),
       GoRoute(
         path: '/word/:id',
         builder: (context, state) => WordDetailScreen(wordId: int.parse(state.pathParameters['id']!)),

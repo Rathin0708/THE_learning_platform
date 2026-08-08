@@ -9,6 +9,8 @@ import '../../domain/entities/user_entities.dart';
 import '../../domain/repositories/content_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
 import '../../domain/ai/local_ai_routing_policy.dart';
+import '../../domain/ai/local_llm_engine.dart';
+import '../../domain/ai/grammar_correction_service.dart';
 import '../conversation/conversation_response_matcher.dart';
 import '../srs/spaced_repetition_engine.dart';
 
@@ -37,6 +39,20 @@ final conversationResponseMatcherProvider = Provider<ConversationResponseMatcher
 final localAiRoutingPolicyProvider = Provider<LocalAiRoutingPolicy>((ref) => LocalAiRoutingPolicy());
 
 final localAiPlatformGateProvider = Provider<LocalAiPlatformGate>((ref) => LocalAiPlatformGate());
+
+/// Engine B's local LLM (THE-51..54). Null by default (safe on every
+/// platform, including web/tests) — apps/mobile's main.dart overrides
+/// this with a real, already-initialized [LlamaCppLocalLlmEngine] only on
+/// desktop and only when a model is actually installed at the expected
+/// path. Kept out of packages/core's own dependency graph on purpose
+/// (see packages/local_ai's doc comment) so core stays web-safe.
+final localLlmEngineProvider = Provider<LocalLlmEngine?>((ref) => null);
+
+final grammarCorrectionServiceProvider = Provider<GrammarCorrectionService?>((ref) {
+  final engine = ref.watch(localLlmEngineProvider);
+  if (engine == null || !engine.isReady) return null;
+  return GrammarCorrectionService(engine);
+});
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 

@@ -4,7 +4,9 @@ import 'package:core/core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../navigation/app_router.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 
 final _settingsProvider = FutureProvider.autoDispose<UserSettingsEntity>((ref) async {
@@ -66,16 +68,21 @@ class SettingsScreen extends ConsumerWidget {
               title: Text('Network'),
               subtitle: Text('Optional, not required — all core features work fully offline.'),
             ),
-            Builder(builder: (context) {
-              final available = ref.read(localAiPlatformGateProvider).isLocalAiAvailable(_currentDevicePlatform());
+            Consumer(builder: (context, ref, _) {
+              final platformOk = ref.read(localAiPlatformGateProvider).isLocalAiAvailable(_currentDevicePlatform());
+              final service = ref.watch(grammarCorrectionServiceProvider);
+              final ready = platformOk && service != null;
               return ListTile(
                 title: const Text('Local AI tutor'),
                 subtitle: Text(
-                  available
-                      ? 'Available on this device (desktop). Not yet built — see THE-51..54.'
-                      : 'Not offered on this device — kept desktop-only so it\'s never forced onto mobile hardware.',
+                  ready
+                      ? 'Ready — grammar correction and open-ended tutoring, fully offline.'
+                      : platformOk
+                          ? 'No local model installed. See docs/local_ai_setup.md.'
+                          : 'Not offered on this device — kept desktop-only so it\'s never forced onto mobile hardware.',
                 ),
-                trailing: Icon(available ? Icons.check_circle_outline : Icons.block_outlined),
+                trailing: Icon(ready ? Icons.check_circle_outline : Icons.block_outlined),
+                onTap: ready ? () => context.push(AppRoutes.localTutor) : null,
               );
             }),
             if (!kIsWeb) const _ContentUpdateSection(),

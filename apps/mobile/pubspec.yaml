@@ -40,6 +40,8 @@ dependencies:
     path: ../../packages/core
   ui:
     path: ../../packages/ui
+  local_ai:
+    path: ../../packages/local_ai
 
 dev_dependencies:
   flutter_test:

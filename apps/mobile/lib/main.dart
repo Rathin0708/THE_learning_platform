@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:local_ai/local_ai.dart';
 import 'package:ui/ui.dart';
 
 Future<void> main() async {
@@ -15,9 +16,20 @@ Future<void> main() async {
   final database = AppDatabase();
   await database.open();
 
+  // Engine B (THE-51..54): resolves to a real engine only on desktop with
+  // a model actually installed at the documented path (see
+  // docs/local_ai_setup.md); a plain `null` everywhere else (mobile, web,
+  // desktop with no model installed yet — THE-61's install flow doesn't
+  // exist). tryLoadDesktopLocalLlmEngine() is web-safe to call
+  // unconditionally (see packages/local_ai's conditional export).
+  final localLlmEngine = await tryLoadDesktopLocalLlmEngine();
+
   runApp(
     ProviderScope(
-      overrides: [appDatabaseProvider.overrideWithValue(database)],
+      overrides: [
+        appDatabaseProvider.overrideWithValue(database),
+        if (localLlmEngine != null) localLlmEngineProvider.overrideWithValue(localLlmEngine),
+      ],
       child: const LanguageLearningApp(),
     ),
   );
