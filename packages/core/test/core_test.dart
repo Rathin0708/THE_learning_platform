@@ -14,6 +14,41 @@ Future<Database> _openInMemory(List<String> ddl) async {
 void main() {
   sqfliteFfiInit();
 
+  group('ConversationResponseMatcher (THE-47)', () {
+    final matcher = ConversationResponseMatcher();
+
+    test('accepts an exact match for a literal expected_response', () {
+      final result = matcher.match('Hello!', 'Hello!');
+      expect(result.matched, isTrue);
+      expect(result.overlapRatio, 1.0);
+    });
+
+    test('accepts a free-form answer to a template expected_response ("My name is ...")', () {
+      final result = matcher.match('My name is ...', 'My name is Rathin');
+      expect(result.matched, isTrue, reason: 'the placeholder should not block matching on the fixed words');
+    });
+
+    test('rejects a reply missing most of the expected content', () {
+      final result = matcher.match('I am good, thank you.', 'Goodbye');
+      expect(result.matched, isFalse);
+    });
+
+    test('is order-insensitive and tolerates extra words', () {
+      final result = matcher.match('thank you', 'well thank you very much');
+      expect(result.matched, isTrue);
+    });
+
+    test('an expected_response that is only a placeholder accepts any non-empty reply', () {
+      final result = matcher.match('...', 'anything at all');
+      expect(result.matched, isTrue);
+    });
+
+    test('an expected_response that is only a placeholder rejects an empty reply', () {
+      final result = matcher.match('...', '');
+      expect(result.matched, isFalse);
+    });
+  });
+
   group('SqliteContentRepository.getSentencesContainingWord (THE-34, spec 6.4)', () {
     late Database contentDb;
     late SqliteContentRepository repo;

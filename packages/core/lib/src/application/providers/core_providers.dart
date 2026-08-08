@@ -7,6 +7,7 @@ import '../../domain/entities/content_entities.dart';
 import '../../domain/entities/user_entities.dart';
 import '../../domain/repositories/content_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../conversation/conversation_response_matcher.dart';
 import '../srs/spaced_repetition_engine.dart';
 
 /// Must be overridden in main() once AppDatabase.open() has completed —
@@ -28,6 +29,8 @@ final progressRepositoryProvider = Provider<ProgressRepository>((ref) {
 });
 
 final srsEngineProvider = Provider<SpacedRepetitionEngine>((ref) => SpacedRepetitionEngine());
+
+final conversationResponseMatcherProvider = Provider<ConversationResponseMatcher>((ref) => ConversationResponseMatcher());
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 

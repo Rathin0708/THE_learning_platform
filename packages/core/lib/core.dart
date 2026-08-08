@@ -15,4 +15,5 @@ export 'src/data/repositories/sqlite_content_repository.dart';
 export 'src/data/repositories/sqlite_progress_repository.dart';
 
 export 'src/application/srs/spaced_repetition_engine.dart';
+export 'src/application/conversation/conversation_response_matcher.dart';
 export 'src/application/providers/core_providers.dart';
