@@ -1,0 +1,155 @@
+# Level 1 seed sentences, built from content/source/words.yaml vocabulary.
+# Each entry expands into one `sentences` row plus one `sentence_translations`
+# row per language (spec 4.1 / 5.1).
+
+sentences:
+  - id: s_hello_name
+    level: level_1
+    category: greetings
+    english: "Hello, my name is Rathin."
+    tamil: "வணக்கம், என் பெயர் ரதின்."
+    hindi: "नमस्ते, मेरा नाम रतिन है।"
+  - id: s_how_are_you
+    level: level_1
+    category: greetings
+    english: "How are you?"
+    tamil: "எப்படி இருக்கிறீர்கள்?"
+    hindi: "आप कैसे हैं?"
+  - id: s_thank_you_help
+    level: level_1
+    category: greetings
+    english: "Thank you for your help."
+    tamil: "உங்கள் உதவிக்கு நன்றி."
+    hindi: "आपकी मदद के लिए धन्यवाद।"
+  - id: s_going_home
+    level: level_1
+    category: travel
+    english: "I am going home."
+    tamil: "நான் வீட்டிற்கு போகிறேன்."
+    hindi: "मैं घर जा रहा हूँ।"
+  - id: s_where_going
+    level: level_1
+    category: travel
+    english: "Where are you going?"
+    tamil: "நீங்கள் எங்கே செல்கிறீர்கள்?"
+    hindi: "आप कहाँ जा रहे हैं?"
+  - id: s_eat_rice
+    level: level_1
+    category: food
+    english: "I eat rice."
+    tamil: "நான் சாதம் சாப்பிடுகிறேன்."
+    hindi: "मैं चावल खाता हूँ।"
+  - id: s_want_water
+    level: level_1
+    category: food
+    english: "I want water."
+    tamil: "எனக்கு தண்ணீர் வேண்டும்."
+    hindi: "मुझे पानी चाहिए।"
+  - id: s_food_tasty
+    level: level_1
+    category: food
+    english: "The food is tasty."
+    tamil: "உணவு சுவையாக உள்ளது."
+    hindi: "खाना स्वादिष्ट है।"
+  - id: s_i_am_hungry
+    level: level_1
+    category: food
+    english: "I am hungry."
+    tamil: "எனக்கு பசிக்கிறது."
+    hindi: "मुझे भूख लगी है।"
+  - id: s_this_is_my_family
+    level: level_1
+    category: family
+    english: "This is my family."
+    tamil: "இது என் குடும்பம்."
+    hindi: "यह मेरा परिवार है।"
+  - id: s_my_mother_name
+    level: level_1
+    category: family
+    english: "This is my mother."
+    tamil: "இது என் அம்மா."
+    hindi: "यह मेरी माँ है।"
+  - id: s_i_have_two_brothers
+    level: level_1
+    category: family
+    english: "I have two brothers."
+    tamil: "எனக்கு இரண்டு அண்ணன்கள் இருக்கிறார்கள்."
+    hindi: "मेरे दो भाई हैं।"
+  - id: s_i_want_to_buy
+    level: level_1
+    category: shopping
+    english: "I want to buy this."
+    tamil: "எனக்கு இதை வாங்க வேண்டும்."
+    hindi: "मुझे यह खरीदना है।"
+  - id: s_what_is_the_price
+    level: level_1
+    category: shopping
+    english: "What is the price?"
+    tamil: "விலை என்ன?"
+    hindi: "कीमत क्या है?"
+  - id: s_this_is_expensive
+    level: level_1
+    category: shopping
+    english: "This is expensive."
+    tamil: "இது விலை அதிகம்."
+    hindi: "यह महंगा है।"
+  - id: s_where_is_station
+    level: level_1
+    category: travel
+    english: "Where is the station?"
+    tamil: "நிலையம் எங்கே இருக்கிறது?"
+    hindi: "स्टेशन कहाँ है?"
+  - id: s_go_straight
+    level: level_1
+    category: travel
+    english: "Go straight and then turn right."
+    tamil: "நேராகச் சென்று வலது புறம் திரும்புங்கள்."
+    hindi: "सीधे जाइए और फिर दायें मुड़िए।"
+  - id: s_i_need_help
+    level: level_1
+    category: basic_verbs
+    english: "I need help."
+    tamil: "எனக்கு உதவி தேவை."
+    hindi: "मुझे मदद चाहिए।"
+  - id: s_i_do_not_understand
+    level: level_1
+    category: basic_verbs
+    english: "I do not understand."
+    tamil: "எனக்கு புரியவில்லை."
+    hindi: "मुझे समझ नहीं आया।"
+  - id: s_can_you_speak_slowly
+    level: level_1
+    category: basic_verbs
+    english: "Can you speak slowly?"
+    tamil: "நீங்கள் மெதுவாக பேச முடியுமா?"
+    hindi: "क्या आप धीरे बोल सकते हैं?"
+  - id: s_what_is_your_name
+    level: level_1
+    category: greetings
+    english: "What is your name?"
+    tamil: "உங்கள் பெயர் என்ன?"
+    hindi: "आपका नाम क्या है?"
+  - id: s_i_am_going_to_work
+    level: level_1
+    category: work
+    english: "I am going to work today."
+    tamil: "நான் இன்று வேலைக்குப் போகிறேன்."
+    hindi: "मैं आज काम पर जा रहा हूँ।"
+  - id: s_see_you_tomorrow
+    level: level_1
+    category: time
+    english: "See you tomorrow."
+    tamil: "நாளை சந்திப்போம்."
+    hindi: "कल मिलते हैं।"
+  - id: s_this_food_is_good
+    level: level_1
+    category: food
+    english: "This food is very good."
+    tamil: "இந்த உணவு மிகவும் நல்லது."
+    hindi: "यह खाना बहुत अच्छा है।"
+  - id: s_the_shop_is_small
+    level: level_1
+    category: shopping
+    english: "The shop is small."
+    tamil: "கடை சிறியது."
+    hindi: "दुकान छोटी है।"

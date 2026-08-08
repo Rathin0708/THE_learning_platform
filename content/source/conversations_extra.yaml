@@ -1,0 +1,157 @@
+# Remaining 15 of the 20 MVP conversation scenarios (spec 6.1), completing
+# the set started in conversations.yaml. Hand-authored and reviewed,
+# reusing vocabulary already validated in words.yaml/sentences.yaml
+# wherever possible to keep translation confidence high.
+
+conversations:
+  - id: c_family
+    level: level_1
+    scenario: "03_family"
+    title: "Family"
+    lines:
+      - {speaker: "A", text: "Is this your family?", translation: "இது உங்கள் குடும்பமா?"}
+      - {speaker: "B", text: "Yes, this is my family.", translation: "ஆம், இது என் குடும்பம்."}
+      - {speaker: "A", text: "Who is this?", translation: "இவர் யார்?"}
+      - {speaker: "B", text: "This is my mother.", translation: "இவர் என் அம்மா."}
+      - {speaker: "A", text: "How many brothers and sisters do you have?", translation: "உங்களுக்கு எத்தனை அண்ணன், அக்கா இருக்கிறார்கள்?"}
+      - {speaker: "B", text: "I have one brother and one sister.", translation: "எனக்கு ஒரு அண்ணன், ஒரு அக்கா இருக்கிறார்கள்."}
+
+  - id: c_friends
+    level: level_1
+    scenario: "04_friends"
+    title: "Friends"
+    lines:
+      - {speaker: "A", text: "Do you have friends here?", translation: "இங்கே உங்களுக்கு நண்பர்கள் இருக்கிறார்களா?"}
+      - {speaker: "B", text: "Yes, I have one friend.", translation: "ஆம், எனக்கு ஒரு நண்பன் இருக்கிறான்."}
+      - {speaker: "A", text: "What is his name?", translation: "அவன் பெயர் என்ன?"}
+      - {speaker: "B", text: "His name is Kumar.", translation: "அவன் பெயர் குமார்."}
+
+  - id: c_restaurant
+    level: level_1
+    scenario: "06_restaurant"
+    title: "Restaurant"
+    lines:
+      - {speaker: "A", text: "What do you want to eat?", translation: "நீங்கள் என்ன சாப்பிட வேண்டும்?"}
+      - {speaker: "B", text: "I want rice.", translation: "எனக்கு சாதம் வேண்டும்."}
+      - {speaker: "A", text: "Do you want water?", translation: "உங்களுக்கு தண்ணீர் வேண்டுமா?"}
+      - {speaker: "B", text: "Yes, I want water.", translation: "ஆம், எனக்கு தண்ணீர் வேண்டும்."}
+
+  - id: c_airport
+    level: level_1
+    scenario: "08_airport"
+    title: "Airport"
+    lines:
+      - {speaker: "A", text: "Where is the airport?", translation: "விமான நிலையம் எங்கே இருக்கிறது?"}
+      - {speaker: "B", text: "The airport is far from here.", translation: "விமான நிலையம் இங்கிருந்து தூரம்."}
+      - {speaker: "A", text: "I need a taxi.", translation: "எனக்கு டாக்ஸி தேவை."}
+      - {speaker: "B", text: "Okay, I will help you.", translation: "சரி, நான் உங்களுக்கு உதவி செய்கிறேன்."}
+
+  - id: c_hotel
+    level: level_1
+    scenario: "09_hotel"
+    title: "Hotel"
+    lines:
+      - {speaker: "A", text: "I want a room.", translation: "எனக்கு ஒரு அறை வேண்டும்."}
+      - {speaker: "B", text: "For how many days?", translation: "எத்தனை நாட்களுக்கு?"}
+      - {speaker: "A", text: "For two days.", translation: "இரண்டு நாட்களுக்கு."}
+      - {speaker: "B", text: "Okay, this is your room.", translation: "சரி, இது உங்கள் அறை."}
+
+  - id: c_interview
+    level: level_2
+    scenario: "11_interview"
+    title: "Interview"
+    lines:
+      - {speaker: "A", text: "What is your name?", translation: "உங்கள் பெயர் என்ன?"}
+      - {speaker: "B", text: "My name is Rathin.", translation: "என் பெயர் ரதின்."}
+      - {speaker: "A", text: "What work do you do?", translation: "நீங்கள் என்ன வேலை செய்கிறீர்கள்?"}
+      - {speaker: "B", text: "I work in an office.", translation: "நான் ஒரு அலுவலகத்தில் வேலை செய்கிறேன்."}
+
+  - id: c_phone_call
+    level: level_1
+    scenario: "12_phone_call"
+    title: "Phone Call"
+    lines:
+      - {speaker: "A", text: "Hello, who is this?", translation: "வணக்கம், இது யார்?"}
+      - {speaker: "B", text: "This is Rathin.", translation: "இது ரதின்."}
+      - {speaker: "A", text: "I need help.", translation: "எனக்கு உதவி தேவை."}
+      - {speaker: "B", text: "Okay, I am coming.", translation: "சரி, நான் வருகிறேன்."}
+
+  - id: c_directions
+    level: level_1
+    scenario: "13_directions"
+    title: "Directions"
+    lines:
+      - {speaker: "A", text: "Where is the road?", translation: "சாலை எங்கே?"}
+      - {speaker: "B", text: "Go straight.", translation: "நேராக செல்லுங்கள்."}
+      - {speaker: "A", text: "Then where?", translation: "பிறகு எங்கே?"}
+      - {speaker: "B", text: "Then turn left.", translation: "பிறகு இடது புறம் திரும்புங்கள்."}
+
+  - id: c_doctor
+    level: level_1
+    scenario: "14_doctor"
+    title: "Doctor"
+    lines:
+      - {speaker: "A", text: "What is wrong?", translation: "என்ன பிரச்சனை?"}
+      - {speaker: "B", text: "I am not well.", translation: "எனக்கு உடல்நிலை சரியில்லை."}
+      - {speaker: "A", text: "Do you want water?", translation: "உங்களுக்கு தண்ணீர் வேண்டுமா?"}
+      - {speaker: "B", text: "Yes, please.", translation: "ஆம், தயவுசெய்து."}
+
+  - id: c_bank
+    level: level_1
+    scenario: "15_bank"
+    title: "Bank"
+    lines:
+      - {speaker: "A", text: "I want money.", translation: "எனக்கு பணம் வேண்டும்."}
+      - {speaker: "B", text: "How much money?", translation: "எவ்வளவு பணம்?"}
+      - {speaker: "A", text: "I want ten.", translation: "எனக்கு பத்து வேண்டும்."}
+      - {speaker: "B", text: "Okay, here is your money.", translation: "சரி, இதோ உங்கள் பணம்."}
+
+  - id: c_school
+    level: level_1
+    scenario: "16_school"
+    title: "School"
+    lines:
+      - {speaker: "A", text: "Where is the school?", translation: "பள்ளி எங்கே?"}
+      - {speaker: "B", text: "The school is near the shop.", translation: "பள்ளி கடைக்கு அருகில் இருக்கிறது."}
+      - {speaker: "A", text: "Thank you.", translation: "நன்றி."}
+      - {speaker: "B", text: "You are welcome.", translation: "பரவாயில்லை."}
+
+  - id: c_college
+    level: level_2
+    scenario: "17_college"
+    title: "College"
+    lines:
+      - {speaker: "A", text: "Do you study in college?", translation: "நீங்கள் கல்லூரியில் படிக்கிறீர்களா?"}
+      - {speaker: "B", text: "Yes, I study in college.", translation: "ஆம், நான் கல்லூரியில் படிக்கிறேன்."}
+      - {speaker: "A", text: "What do you study?", translation: "நீங்கள் என்ன படிக்கிறீர்கள்?"}
+      - {speaker: "B", text: "I study English.", translation: "நான் ஆங்கிலம் படிக்கிறேன்."}
+
+  - id: c_workplace
+    level: level_1
+    scenario: "18_workplace"
+    title: "Workplace"
+    lines:
+      - {speaker: "A", text: "I am going to work.", translation: "நான் வேலைக்குப் போகிறேன்."}
+      - {speaker: "B", text: "See you in the evening.", translation: "மாலையில் சந்திப்போம்."}
+      - {speaker: "A", text: "Okay, goodbye.", translation: "சரி, போய் வருகிறேன்."}
+      - {speaker: "B", text: "Goodbye.", translation: "போய் வாருங்கள்."}
+
+  - id: c_meeting
+    level: level_2
+    scenario: "19_meeting"
+    title: "Meeting"
+    lines:
+      - {speaker: "A", text: "The meeting is at ten.", translation: "கூட்டம் பத்து மணிக்கு."}
+      - {speaker: "B", text: "Okay, I will come.", translation: "சரி, நான் வருகிறேன்."}
+      - {speaker: "A", text: "Do not be late.", translation: "தாமதமாக வர வேண்டாம்."}
+      - {speaker: "B", text: "I will not be late.", translation: "நான் தாமதமாக வரமாட்டேன்."}
+
+  - id: c_emergency
+    level: level_1
+    scenario: "20_emergency"
+    title: "Emergency"
+    lines:
+      - {speaker: "A", text: "Help! Help!", translation: "உதவி! உதவி!"}
+      - {speaker: "B", text: "What happened?", translation: "என்ன ஆனது?"}
+      - {speaker: "A", text: "I need a doctor.", translation: "எனக்கு டாக்டர் தேவை."}
+      - {speaker: "B", text: "I am calling now.", translation: "நான் இப்போது அழைக்கிறேன்."}

@@ -1,0 +1,578 @@
+# Level 1 (Survival) seed vocabulary — Tamil <-> English <-> Hindi.
+# Each entry is a "concept": one meaning expressed in all three languages.
+# The content compiler expands each concept into per-language `words` rows
+# plus pairwise `translations` rows (en<->ta, en<->hi, ta<->hi), matching
+# the word -> sense -> translation model in spec section 4.5.
+#
+# This is a deliberately-scoped, hand-checked starter set (not the full
+# 2,000-word MVP target) — see THE-18/THE-19 for the content-scale-up plan.
+
+concepts:
+  # --- Greetings ---------------------------------------------------------
+  - id: hello
+    category: greetings
+    type: interjection
+    frequency: 0.98
+    english: {word: "hello", ipa: "/həˈloʊ/"}
+    tamil: {word: "வணக்கம்", roman: "vanakkam"}
+    hindi: {word: "नमस्ते", roman: "namaste"}
+  - id: good_morning
+    category: greetings
+    type: phrase
+    frequency: 0.8
+    english: {word: "good morning", ipa: "/ɡʊd ˈmɔːrnɪŋ/"}
+    tamil: {word: "காலை வணக்கம்", roman: "kaalai vanakkam"}
+    hindi: {word: "सुप्रभात", roman: "suprabhaat"}
+  - id: thank_you
+    category: greetings
+    type: phrase
+    frequency: 0.95
+    english: {word: "thank you", ipa: "/θæŋk juː/"}
+    tamil: {word: "நன்றி", roman: "nandri"}
+    hindi: {word: "धन्यवाद", roman: "dhanyavaad"}
+  - id: please
+    category: greetings
+    type: adverb
+    frequency: 0.85
+    english: {word: "please", ipa: "/pliːz/"}
+    tamil: {word: "தயவுசெய்து", roman: "thayavu seydhu"}
+    hindi: {word: "कृपया", roman: "kripayaa"}
+  - id: sorry
+    category: greetings
+    type: interjection
+    frequency: 0.8
+    english: {word: "sorry", ipa: "/ˈsɒri/"}
+    tamil: {word: "மன்னிக்கவும்", roman: "mannikkavum"}
+    hindi: {word: "माफ़ कीजिए", roman: "maaf kijiye"}
+  - id: yes
+    category: greetings
+    type: adverb
+    frequency: 0.97
+    english: {word: "yes", ipa: "/jɛs/"}
+    tamil: {word: "ஆம்", roman: "aam"}
+    hindi: {word: "हाँ", roman: "haan"}
+  - id: no
+    category: greetings
+    type: adverb
+    frequency: 0.97
+    english: {word: "no", ipa: "/noʊ/"}
+    tamil: {word: "இல்லை", roman: "illai"}
+    hindi: {word: "नहीं", roman: "nahin"}
+  - id: how_are_you
+    category: greetings
+    type: phrase
+    frequency: 0.9
+    english: {word: "how are you?", ipa: "/haʊ ɑːr juː/"}
+    tamil: {word: "எப்படி இருக்கிறீர்கள்?", roman: "eppadi irukkireergal?"}
+    hindi: {word: "आप कैसे हैं?", roman: "aap kaise hain?"}
+  - id: my_name_is
+    category: greetings
+    type: phrase
+    frequency: 0.85
+    english: {word: "my name is", ipa: "/maɪ neɪm ɪz/"}
+    tamil: {word: "என் பெயர்", roman: "en peyar"}
+    hindi: {word: "मेरा नाम है", roman: "meraa naam hai"}
+  - id: goodbye
+    category: greetings
+    type: interjection
+    frequency: 0.9
+    english: {word: "goodbye", ipa: "/ɡʊdˈbaɪ/"}
+    tamil: {word: "போய் வருகிறேன்", roman: "poi varugiren"}
+    hindi: {word: "अलविदा", roman: "alvidaa"}
+
+  # --- Numbers -------------------------------------------------------------
+  - id: one
+    category: numbers
+    type: number
+    frequency: 0.9
+    english: {word: "one", ipa: "/wʌn/"}
+    tamil: {word: "ஒன்று", roman: "ondru"}
+    hindi: {word: "एक", roman: "ek"}
+  - id: two
+    category: numbers
+    type: number
+    frequency: 0.9
+    english: {word: "two", ipa: "/tuː/"}
+    tamil: {word: "இரண்டு", roman: "irandu"}
+    hindi: {word: "दो", roman: "do"}
+  - id: three
+    category: numbers
+    type: number
+    frequency: 0.88
+    english: {word: "three", ipa: "/θriː/"}
+    tamil: {word: "மூன்று", roman: "moondru"}
+    hindi: {word: "तीन", roman: "teen"}
+  - id: four
+    category: numbers
+    type: number
+    frequency: 0.85
+    english: {word: "four", ipa: "/fɔːr/"}
+    tamil: {word: "நான்கு", roman: "naangu"}
+    hindi: {word: "चार", roman: "chaar"}
+  - id: five
+    category: numbers
+    type: number
+    frequency: 0.85
+    english: {word: "five", ipa: "/faɪv/"}
+    tamil: {word: "ஐந்து", roman: "aindhu"}
+    hindi: {word: "पांच", roman: "paanch"}
+  - id: six
+    category: numbers
+    type: number
+    frequency: 0.75
+    english: {word: "six", ipa: "/sɪks/"}
+    tamil: {word: "ஆறு", roman: "aaru"}
+    hindi: {word: "छह", roman: "chhah"}
+  - id: seven
+    category: numbers
+    type: number
+    frequency: 0.75
+    english: {word: "seven", ipa: "/ˈsɛvən/"}
+    tamil: {word: "ஏழு", roman: "ezhu"}
+    hindi: {word: "सात", roman: "saat"}
+  - id: eight
+    category: numbers
+    type: number
+    frequency: 0.72
+    english: {word: "eight", ipa: "/eɪt/"}
+    tamil: {word: "எட்டு", roman: "ettu"}
+    hindi: {word: "आठ", roman: "aath"}
+  - id: nine
+    category: numbers
+    type: number
+    frequency: 0.72
+    english: {word: "nine", ipa: "/naɪn/"}
+    tamil: {word: "ஒன்பது", roman: "onbadhu"}
+    hindi: {word: "नौ", roman: "nau"}
+  - id: ten
+    category: numbers
+    type: number
+    frequency: 0.8
+    english: {word: "ten", ipa: "/tɛn/"}
+    tamil: {word: "பத்து", roman: "pathu"}
+    hindi: {word: "दस", roman: "das"}
+
+  # --- Family ---------------------------------------------------------------
+  - id: mother
+    category: family
+    type: noun
+    frequency: 0.93
+    english: {word: "mother", ipa: "/ˈmʌðər/"}
+    tamil: {word: "அம்மா", roman: "amma"}
+    hindi: {word: "माँ", roman: "maan"}
+  - id: father
+    category: family
+    type: noun
+    frequency: 0.93
+    english: {word: "father", ipa: "/ˈfɑːðər/"}
+    tamil: {word: "அப்பா", roman: "appa"}
+    hindi: {word: "पिता", roman: "pitaa"}
+  - id: brother
+    category: family
+    type: noun
+    frequency: 0.8
+    english: {word: "brother", ipa: "/ˈbrʌðər/"}
+    tamil: {word: "அண்ணன்", roman: "annan"}
+    hindi: {word: "भाई", roman: "bhaai"}
+  - id: sister
+    category: family
+    type: noun
+    frequency: 0.8
+    english: {word: "sister", ipa: "/ˈsɪstər/"}
+    tamil: {word: "அக்கா", roman: "akka"}
+    hindi: {word: "बहन", roman: "bahan"}
+  - id: son
+    category: family
+    type: noun
+    frequency: 0.7
+    english: {word: "son", ipa: "/sʌn/"}
+    tamil: {word: "மகன்", roman: "magan"}
+    hindi: {word: "बेटा", roman: "betaa"}
+  - id: daughter
+    category: family
+    type: noun
+    frequency: 0.7
+    english: {word: "daughter", ipa: "/ˈdɔːtər/"}
+    tamil: {word: "மகள்", roman: "magal"}
+    hindi: {word: "बेटी", roman: "betee"}
+  - id: friend
+    category: family
+    type: noun
+    frequency: 0.85
+    english: {word: "friend", ipa: "/frɛnd/"}
+    tamil: {word: "நண்பன்", roman: "nanban"}
+    hindi: {word: "दोस्त", roman: "dost"}
+  - id: family
+    category: family
+    type: noun
+    frequency: 0.85
+    english: {word: "family", ipa: "/ˈfæməli/"}
+    tamil: {word: "குடும்பம்", roman: "kudumbam"}
+    hindi: {word: "परिवार", roman: "parivaar"}
+  - id: child
+    category: family
+    type: noun
+    frequency: 0.75
+    english: {word: "child", ipa: "/tʃaɪld/"}
+    tamil: {word: "குழந்தை", roman: "kuzhandhai"}
+    hindi: {word: "बच्चा", roman: "bachchaa"}
+  - id: grandmother
+    category: family
+    type: noun
+    frequency: 0.6
+    english: {word: "grandmother", ipa: "/ˈɡrænˌmʌðər/"}
+    tamil: {word: "பாட்டி", roman: "paatti"}
+    hindi: {word: "दादी", roman: "daadee"}
+
+  # --- Food -------------------------------------------------------------------
+  - id: eat
+    category: food
+    type: verb
+    frequency: 0.92
+    english: {word: "eat", ipa: "/iːt/"}
+    tamil: {word: "சாப்பிடு", roman: "saapidu"}
+    hindi: {word: "खाना", roman: "khaanaa"}
+  - id: drink
+    category: food
+    type: verb
+    frequency: 0.85
+    english: {word: "drink", ipa: "/drɪŋk/"}
+    tamil: {word: "குடி", roman: "kudi"}
+    hindi: {word: "पीना", roman: "peenaa"}
+  - id: water
+    category: food
+    type: noun
+    frequency: 0.95
+    english: {word: "water", ipa: "/ˈwɔːtər/"}
+    tamil: {word: "தண்ணீர்", roman: "thanneer"}
+    hindi: {word: "पानी", roman: "paanee"}
+  - id: rice
+    category: food
+    type: noun
+    frequency: 0.85
+    english: {word: "rice", ipa: "/raɪs/"}
+    tamil: {word: "சாதம்", roman: "saadham"}
+    hindi: {word: "चावल", roman: "chaawal"}
+  - id: bread
+    category: food
+    type: noun
+    frequency: 0.7
+    english: {word: "bread", ipa: "/brɛd/"}
+    tamil: {word: "ரொட்டி", roman: "rotti"}
+    hindi: {word: "रोटी", roman: "rotee"}
+  - id: milk
+    category: food
+    type: noun
+    frequency: 0.75
+    english: {word: "milk", ipa: "/mɪlk/"}
+    tamil: {word: "பால்", roman: "paal"}
+    hindi: {word: "दूध", roman: "doodh"}
+  - id: fruit
+    category: food
+    type: noun
+    frequency: 0.7
+    english: {word: "fruit", ipa: "/fruːt/"}
+    tamil: {word: "பழம்", roman: "pazham"}
+    hindi: {word: "फल", roman: "phal"}
+  - id: vegetable
+    category: food
+    type: noun
+    frequency: 0.68
+    english: {word: "vegetable", ipa: "/ˈvɛdʒtəbəl/"}
+    tamil: {word: "காய்கறி", roman: "kaaikari"}
+    hindi: {word: "सब्ज़ी", roman: "sabzee"}
+  - id: hungry
+    category: food
+    type: adjective
+    frequency: 0.72
+    english: {word: "hungry", ipa: "/ˈhʌŋɡri/"}
+    tamil: {word: "பசி", roman: "pasi"}
+    hindi: {word: "भूखा", roman: "bhookhaa"}
+  - id: tasty
+    category: food
+    type: adjective
+    frequency: 0.6
+    english: {word: "tasty", ipa: "/ˈteɪsti/"}
+    tamil: {word: "சுவையான", roman: "suvaiyaana"}
+    hindi: {word: "स्वादिष्ट", roman: "svaadisht"}
+
+  # --- Travel / Directions ----------------------------------------------------
+  - id: go
+    category: travel
+    type: verb
+    frequency: 0.92
+    english: {word: "go", ipa: "/ɡoʊ/"}
+    tamil: {word: "போ", roman: "po"}
+    hindi: {word: "जाना", roman: "jaanaa"}
+  - id: come
+    category: travel
+    type: verb
+    frequency: 0.9
+    english: {word: "come", ipa: "/kʌm/"}
+    tamil: {word: "வா", roman: "vaa"}
+    hindi: {word: "आना", roman: "aanaa"}
+  - id: home
+    category: travel
+    type: noun
+    frequency: 0.9
+    english: {word: "home", ipa: "/hoʊm/"}
+    tamil: {word: "வீடு", roman: "veedu"}
+    hindi: {word: "घर", roman: "ghar"}
+  - id: where
+    category: travel
+    type: pronoun
+    frequency: 0.88
+    english: {word: "where", ipa: "/wɛr/"}
+    tamil: {word: "எங்கே", roman: "engey"}
+    hindi: {word: "कहाँ", roman: "kahaan"}
+  - id: left
+    category: travel
+    type: noun
+    frequency: 0.7
+    english: {word: "left", ipa: "/lɛft/"}
+    tamil: {word: "இடது", roman: "idadhu"}
+    hindi: {word: "बायाँ", roman: "baayaan"}
+  - id: right
+    category: travel
+    type: noun
+    frequency: 0.7
+    english: {word: "right", ipa: "/raɪt/"}
+    tamil: {word: "வலது", roman: "valadhu"}
+    hindi: {word: "दायाँ", roman: "daayaan"}
+  - id: station
+    category: travel
+    type: noun
+    frequency: 0.65
+    english: {word: "station", ipa: "/ˈsteɪʃən/"}
+    tamil: {word: "நிலையம்", roman: "nilayam"}
+    hindi: {word: "स्टेशन", roman: "steshan"}
+  - id: airport
+    category: travel
+    type: noun
+    frequency: 0.55
+    english: {word: "airport", ipa: "/ˈɛrpɔːrt/"}
+    tamil: {word: "விமான நிலையம்", roman: "vimaana nilayam"}
+    hindi: {word: "हवाई अड्डा", roman: "havaai addaa"}
+  - id: hotel
+    category: travel
+    type: noun
+    frequency: 0.6
+    english: {word: "hotel", ipa: "/hoʊˈtɛl/"}
+    tamil: {word: "விடுதி", roman: "vidudhi"}
+    hindi: {word: "होटल", roman: "hotal"}
+  - id: road
+    category: travel
+    type: noun
+    frequency: 0.65
+    english: {word: "road", ipa: "/roʊd/"}
+    tamil: {word: "சாலை", roman: "saalai"}
+    hindi: {word: "सड़क", roman: "sadak"}
+
+  # --- Shopping / Money --------------------------------------------------------
+  - id: buy
+    category: shopping
+    type: verb
+    frequency: 0.82
+    english: {word: "buy", ipa: "/baɪ/"}
+    tamil: {word: "வாங்கு", roman: "vaangu"}
+    hindi: {word: "खरीदना", roman: "khareednaa"}
+  - id: sell
+    category: shopping
+    type: verb
+    frequency: 0.6
+    english: {word: "sell", ipa: "/sɛl/"}
+    tamil: {word: "விற்பனை", roman: "virpanai"}
+    hindi: {word: "बेचना", roman: "bechnaa"}
+  - id: price
+    category: shopping
+    type: noun
+    frequency: 0.7
+    english: {word: "price", ipa: "/praɪs/"}
+    tamil: {word: "விலை", roman: "vilai"}
+    hindi: {word: "कीमत", roman: "keemat"}
+  - id: money
+    category: money
+    type: noun
+    frequency: 0.85
+    english: {word: "money", ipa: "/ˈmʌni/"}
+    tamil: {word: "பணம்", roman: "panam"}
+    hindi: {word: "पैसा", roman: "paisaa"}
+  - id: shop
+    category: shopping
+    type: noun
+    frequency: 0.75
+    english: {word: "shop", ipa: "/ʃɒp/"}
+    tamil: {word: "கடை", roman: "kadai"}
+    hindi: {word: "दुकान", roman: "dukaan"}
+  - id: expensive
+    category: shopping
+    type: adjective
+    frequency: 0.6
+    english: {word: "expensive", ipa: "/ɪkˈspɛnsɪv/"}
+    tamil: {word: "விலை அதிகம்", roman: "vilai adhigam"}
+    hindi: {word: "महंगा", roman: "mahangaa"}
+  - id: cheap
+    category: shopping
+    type: adjective
+    frequency: 0.55
+    english: {word: "cheap", ipa: "/tʃiːp/"}
+    tamil: {word: "மலிவான", roman: "malivaana"}
+    hindi: {word: "सस्ता", roman: "sastaa"}
+
+  # --- Work / Time -----------------------------------------------------------
+  - id: work
+    category: work
+    type: noun
+    frequency: 0.88
+    english: {word: "work", ipa: "/wɜːrk/"}
+    tamil: {word: "வேலை", roman: "velai"}
+    hindi: {word: "काम", roman: "kaam"}
+  - id: today
+    category: time
+    type: adverb
+    frequency: 0.9
+    english: {word: "today", ipa: "/təˈdeɪ/"}
+    tamil: {word: "இன்று", roman: "indru"}
+    hindi: {word: "आज", roman: "aaj"}
+  - id: tomorrow
+    category: time
+    type: adverb
+    frequency: 0.8
+    english: {word: "tomorrow", ipa: "/təˈmɒroʊ/"}
+    tamil: {word: "நாளை", roman: "naalai"}
+    hindi: {word: "कल", roman: "kal"}
+  - id: yesterday
+    category: time
+    type: adverb
+    frequency: 0.78
+    english: {word: "yesterday", ipa: "/ˈjɛstərdeɪ/"}
+    tamil: {word: "நேற்று", roman: "netru"}
+    hindi: {word: "बीता कल", roman: "beetaa kal"}
+  - id: time
+    category: time
+    type: noun
+    frequency: 0.88
+    english: {word: "time", ipa: "/taɪm/"}
+    tamil: {word: "நேரம்", roman: "neram"}
+    hindi: {word: "समय", roman: "samay"}
+  - id: now
+    category: time
+    type: adverb
+    frequency: 0.85
+    english: {word: "now", ipa: "/naʊ/"}
+    tamil: {word: "இப்போது", roman: "ippodhu"}
+    hindi: {word: "अभी", roman: "abhee"}
+  - id: office
+    category: work
+    type: noun
+    frequency: 0.7
+    english: {word: "office", ipa: "/ˈɒfɪs/"}
+    tamil: {word: "அலுவலகம்", roman: "aluvalagam"}
+    hindi: {word: "दफ़्तर", roman: "daftar"}
+
+  # --- Basic verbs / questions / adjectives ------------------------------------
+  - id: want
+    category: basic_verbs
+    type: verb
+    frequency: 0.9
+    english: {word: "want", ipa: "/wɒnt/"}
+    tamil: {word: "வேண்டும்", roman: "vendum"}
+    hindi: {word: "चाहिए", roman: "chaahiye"}
+  - id: need
+    category: basic_verbs
+    type: verb
+    frequency: 0.88
+    english: {word: "need", ipa: "/niːd/"}
+    tamil: {word: "தேவை", roman: "thevai"}
+    hindi: {word: "ज़रूरत", roman: "zaroorat"}
+  - id: know
+    category: basic_verbs
+    type: verb
+    frequency: 0.82
+    english: {word: "know", ipa: "/noʊ/"}
+    tamil: {word: "தெரியும்", roman: "theriyum"}
+    hindi: {word: "जानना", roman: "jaannaa"}
+  - id: understand
+    category: basic_verbs
+    type: verb
+    frequency: 0.75
+    english: {word: "understand", ipa: "/ˌʌndərˈstænd/"}
+    tamil: {word: "புரிகிறது", roman: "purigiradhu"}
+    hindi: {word: "समझना", roman: "samajhnaa"}
+  - id: speak
+    category: basic_verbs
+    type: verb
+    frequency: 0.8
+    english: {word: "speak", ipa: "/spiːk/"}
+    tamil: {word: "பேசு", roman: "pesu"}
+    hindi: {word: "बोलना", roman: "bolnaa"}
+  - id: help
+    category: basic_verbs
+    type: verb
+    frequency: 0.85
+    english: {word: "help", ipa: "/hɛlp/"}
+    tamil: {word: "உதவி", roman: "udhavi"}
+    hindi: {word: "मदद", roman: "madad"}
+  - id: what
+    category: basic_questions
+    type: pronoun
+    frequency: 0.92
+    english: {word: "what", ipa: "/wɒt/"}
+    tamil: {word: "என்ன", roman: "enna"}
+    hindi: {word: "क्या", roman: "kyaa"}
+  - id: who
+    category: basic_questions
+    type: pronoun
+    frequency: 0.8
+    english: {word: "who", ipa: "/huː/"}
+    tamil: {word: "யார்", roman: "yaar"}
+    hindi: {word: "कौन", roman: "kaun"}
+  - id: why
+    category: basic_questions
+    type: pronoun
+    frequency: 0.75
+    english: {word: "why", ipa: "/waɪ/"}
+    tamil: {word: "ஏன்", roman: "yen"}
+    hindi: {word: "क्यों", roman: "kyon"}
+  - id: how
+    category: basic_questions
+    type: pronoun
+    frequency: 0.78
+    english: {word: "how", ipa: "/haʊ/"}
+    tamil: {word: "எப்படி", roman: "eppadi"}
+    hindi: {word: "कैसे", roman: "kaise"}
+  - id: good
+    category: basic_adjectives
+    type: adjective
+    frequency: 0.9
+    english: {word: "good", ipa: "/ɡʊd/"}
+    tamil: {word: "நல்லது", roman: "nalladhu"}
+    hindi: {word: "अच्छा", roman: "achchhaa"}
+  - id: bad
+    category: basic_adjectives
+    type: adjective
+    frequency: 0.75
+    english: {word: "bad", ipa: "/bæd/"}
+    tamil: {word: "கெட்டது", roman: "kettadhu"}
+    hindi: {word: "बुरा", roman: "buraa"}
+  - id: big
+    category: basic_adjectives
+    type: adjective
+    frequency: 0.8
+    english: {word: "big", ipa: "/bɪɡ/"}
+    tamil: {word: "பெரிய", roman: "periya"}
+    hindi: {word: "बड़ा", roman: "badaa"}
+  - id: small
+    category: basic_adjectives
+    type: adjective
+    frequency: 0.78
+    english: {word: "small", ipa: "/smɔːl/"}
+    tamil: {word: "சிறிய", roman: "siriya"}
+    hindi: {word: "छोटा", roman: "chhotaa"}
+  - id: new
+    category: basic_adjectives
+    type: adjective
+    frequency: 0.75
+    english: {word: "new", ipa: "/njuː/"}
+    tamil: {word: "புதிய", roman: "pudhiya"}
+    hindi: {word: "नया", roman: "nayaa"}

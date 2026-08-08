@@ -1,0 +1,120 @@
+# Structured conversation scenarios for Engine A (spec 6.1 / 7.3).
+# 5 of the 20 MVP scenarios, hand-authored and correctness-checked.
+# The remaining 15 (spec 6.1: Family, Friends, Restaurant, Hotel, Office,
+# Interview, Phone call, Doctor, Bank, School, College, Workplace, Meeting,
+# Emergency) follow the same shape and are tracked as remaining content work.
+
+conversations:
+  - id: c_greetings
+    level: level_1
+    scenario: "01_greetings"
+    title: "Greetings"
+    lines:
+      - speaker: "A"
+        text: "Hello!"
+        translation: "வணக்கம்!"
+        expected_response: "Hello!"
+      - speaker: "B"
+        text: "Hello! How are you?"
+        translation: "வணக்கம்! எப்படி இருக்கிறீர்கள்?"
+        expected_response: "I am good, thank you."
+      - speaker: "A"
+        text: "I am good, thank you."
+        translation: "நான் நல்லா இருக்கிறேன், நன்றி."
+        expected_response: null
+      - speaker: "B"
+        text: "What is your name?"
+        translation: "உங்கள் பெயர் என்ன?"
+        expected_response: "My name is ..."
+      - speaker: "A"
+        text: "My name is Rathin."
+        translation: "என் பெயர் ரதின்."
+        expected_response: null
+      - speaker: "B"
+        text: "Nice to meet you. Goodbye!"
+        translation: "உங்களை சந்தித்ததில் மகிழ்ச்சி. போய் வருகிறேன்!"
+        expected_response: "Goodbye!"
+
+  - id: c_introduction
+    level: level_1
+    scenario: "02_introduction"
+    title: "Introduction"
+    lines:
+      - speaker: "A"
+        text: "What is your name?"
+        translation: "உங்கள் பெயர் என்ன?"
+        expected_response: "My name is ..."
+      - speaker: "B"
+        text: "My name is Priya. What do you do?"
+        translation: "என் பெயர் பிரியா. நீங்கள் என்ன வேலை செய்கிறீர்கள்?"
+        expected_response: null
+      - speaker: "A"
+        text: "I work in an office."
+        translation: "நான் ஒரு அலுவலகத்தில் வேலை செய்கிறேன்."
+        expected_response: null
+      - speaker: "B"
+        text: "Where are you from?"
+        translation: "நீங்கள் எங்கிருந்து வருகிறீர்கள்?"
+        expected_response: null
+
+  - id: c_shopping
+    level: level_1
+    scenario: "05_shopping"
+    title: "Shopping"
+    lines:
+      - speaker: "A"
+        text: "I want to buy this."
+        translation: "எனக்கு இதை வாங்க வேண்டும்."
+        expected_response: null
+      - speaker: "B"
+        text: "What is the price?"
+        translation: "விலை என்ன?"
+        expected_response: null
+      - speaker: "A"
+        text: "This is expensive. Do you have something cheap?"
+        translation: "இது விலை அதிகம். மலிவானது ஏதேனும் உள்ளதா?"
+        expected_response: null
+      - speaker: "B"
+        text: "Yes, this one is cheap."
+        translation: "ஆம், இது மலிவானது."
+        expected_response: null
+
+  - id: c_travel
+    level: level_1
+    scenario: "07_travel"
+    title: "Travel"
+    lines:
+      - speaker: "A"
+        text: "Where is the station?"
+        translation: "நிலையம் எங்கே இருக்கிறது?"
+        expected_response: null
+      - speaker: "B"
+        text: "Go straight and then turn right."
+        translation: "நேராகச் சென்று வலது புறம் திரும்புங்கள்."
+        expected_response: null
+      - speaker: "A"
+        text: "Thank you for your help."
+        translation: "உங்கள் உதவிக்கு நன்றி."
+        expected_response: null
+
+  - id: c_office
+    level: level_1
+    scenario: "10_office"
+    title: "Office"
+    lines:
+      - speaker: "A"
+        text: "I am going to work today."
+        translation: "நான் இன்று வேலைக்குப் போகிறேன்."
+        expected_response: null
+      - speaker: "B"
+        text: "See you tomorrow."
+        translation: "நாளை சந்திப்போம்."
+        expected_response: "See you tomorrow."
+      - speaker: "A"
+        text: "I need help with this."
+        translation: "எனக்கு இதில் உதவி தேவை."
+        expected_response: null
+      - speaker: "B"
+        text: "I do not understand. Can you speak slowly?"
+        translation: "எனக்கு புரியவில்லை. நீங்கள் மெதுவாக பேச முடியுமா?"
+        expected_response: null
