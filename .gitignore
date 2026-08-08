@@ -37,6 +37,10 @@ Thumbs.db
 **/assets/content/content.db
 **/assets/content/content.json
 
+# Bundled Whisper.cpp GGML model (THE-37) — a large (~75MB) third-party
+# binary asset, not project source. Download via docs/setup.md.
+**/assets/models/*.bin
+
 # sqflite_common_ffi_web generated worker/wasm binaries (regenerate via
 # `dart run sqflite_common_ffi_web:setup` in apps/mobile — see docs/setup.md)
 **/web/sqlite3.wasm

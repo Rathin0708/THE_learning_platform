@@ -13,6 +13,10 @@ dependencies:
   flutter_riverpod: ^2.6.1
   flutter_tts: ^4.2.5
   speech_to_text: ^7.4.0
+  whisper_ggml: ^2.6.0
+  record: ^6.0.0
+  path_provider: ^2.1.5
+  universal_io: ^2.2.2
   core:
     path: ../core
 

@@ -4,25 +4,24 @@ import 'package:core/core.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-/// Real, on-device-only speech recognition (THE-37/39/40), wrapping
-/// `speech_to_text` (native OS ASR: Android SpeechRecognizer, iOS/macOS
-/// Speech framework, Windows Speech Platform).
+import 'whisper_fallback_service.dart';
+
+/// Real, on-device speech recognition matching spec 7.1's exact
+/// architecture: "native on-device recognizer first, capability-detected;
+/// bundled Whisper.cpp engine as the universal fallback."
 ///
-/// `onDevice: true` is always forced — per the package's own docs, this
-/// makes the listen attempt fail outright rather than silently falling
-/// back to a network-based recognizer, which matters because this app's
-/// hard rule (spec 8.2) is that no core feature may depend on a network
-/// call. A failed on-device attempt is surfaced as [AsrResult.unavailable]
-/// so the UI can say so honestly, rather than the app silently phoning
-/// home for something the user was told is offline.
-///
-/// Bundled Whisper.cpp as the universal fallback for devices/locales
-/// without on-device OS recognition (spec 7.1's "bundled Whisper.cpp
-/// engine as the universal fallback") is NOT implemented here — that is
-/// a substantial native-binary-bundling project of its own (THE-37/38)
-/// and is intentionally left as real remaining scope rather than faked.
+/// Tries `speech_to_text` (native OS ASR: Android SpeechRecognizer,
+/// iOS/macOS Speech framework, Windows Speech Platform) with
+/// `onDevice: true` forced first — per the package's own docs, this makes
+/// the attempt fail outright rather than silently use a network-based
+/// recognizer, which matters because this app's hard rule (spec 8.2) is
+/// that no core feature may depend on a network call. When that's
+/// unavailable for the requested language/device, falls back to
+/// [WhisperFallbackService] (bundled whisper.cpp, THE-37) — also fully
+/// offline. Only if both fail does this surface [AsrResult.unavailable].
 class SpeechToTextService {
   final stt.SpeechToText _speech = stt.SpeechToText();
+  final WhisperFallbackService _whisperFallback = WhisperFallbackService();
   bool? _available;
 
   Future<bool> _ensureInitialized() async {
@@ -39,6 +38,15 @@ class SpeechToTextService {
   /// reason it didn't work). [timeout] bounds how long listening runs if
   /// the user never stops speaking.
   Future<AsrOutcome> listenOnce(LanguageCode language, {Duration timeout = const Duration(seconds: 8)}) async {
+    final onDeviceResult = await _listenOnceOnDevice(language, timeout: timeout);
+    if (onDeviceResult.result != AsrResult.unavailable) return onDeviceResult;
+
+    // OS on-device recognizer isn't available for this language/device —
+    // fall back to the bundled Whisper model rather than give up.
+    return _whisperFallback.listenOnce(language, timeout: timeout);
+  }
+
+  Future<AsrOutcome> _listenOnceOnDevice(LanguageCode language, {required Duration timeout}) async {
     final initialized = await _ensureInitialized();
     if (!initialized) return const AsrOutcome(AsrResult.unavailable, null);
 
