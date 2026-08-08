@@ -1,0 +1,7 @@
+name: probe
+publish_to: none
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  llama_cpp_dart:
+    path: ../llama_cpp_dart_patched

@@ -46,3 +46,13 @@ Thumbs.db
 **/web/sqlite3.wasm
 **/web/sqflite_sw.js
 **/.dart_tool/sqflite_common_ffi_web/
+
+# Local AI (THE-51/52) native build workspace: llama.cpp source clone,
+# CMake build output (llama.dll etc.), and the downloaded GGUF model are
+# large, regenerable, machine-specific build artifacts, not project source.
+# See docs/local_ai_setup.md to rebuild.
+/native/llama.cpp/
+/native/llama_cpp_dart/
+/native/llama_cpp_dart_patched/
+/native/llama_cpp_dart_probe/.dart_tool/
+/native/models/
