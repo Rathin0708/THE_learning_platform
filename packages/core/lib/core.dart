@@ -1,7 +1,7 @@
 /// Shared business logic for the Language Learning OS — domain entities,
 /// SQLite data layer, spaced-repetition engine, and Riverpod providers.
 /// Consumed by every app target (mobile/desktop/web); never imports UI.
-library core;
+library;
 
 export 'src/domain/entities/content_entities.dart';
 export 'src/domain/entities/user_entities.dart';

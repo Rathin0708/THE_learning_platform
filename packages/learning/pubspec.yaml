@@ -1,7 +1,7 @@
 name: learning
-description: "A new Flutter package project."
+description: "Reserved for Language Learning OS learning-engine code (currently folded into packages/core)."
 version: 0.0.1
-homepage:
+publish_to: 'none'
 
 environment:
   sdk: ^3.11.5

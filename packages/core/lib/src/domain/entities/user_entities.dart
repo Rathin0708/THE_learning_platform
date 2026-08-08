@@ -1,4 +1,5 @@
 /// Domain entities for the User database (local read/write, spec 4.2).
+library;
 
 class UserProgressEntity {
   final int contentId;

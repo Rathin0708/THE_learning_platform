@@ -2,7 +2,7 @@
 /// navigation shell, and every feature screen. Consumed by apps/mobile,
 /// apps/desktop, and apps/web so UI is written once (spec 2.6 monorepo
 /// principle).
-library ui;
+library;
 
 export 'src/theme/app_theme.dart';
 export 'src/navigation/app_router.dart';

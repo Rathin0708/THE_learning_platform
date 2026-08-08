@@ -22,9 +22,6 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
   _Stage _stage = _Stage.learn;
   int _wordIndex = 0;
   final Set<int> _missedWordIds = {};
-  bool _reviewingMissed = false;
-  final _answerController = TextEditingController();
-  String? _feedback;
 
   Future<void> _startLesson() async {
     final level = ref.read(currentLevelProvider);
@@ -35,19 +32,11 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
       _stage = _Stage.learn;
       _wordIndex = 0;
       _missedWordIds.clear();
-      _reviewingMissed = false;
-      _feedback = null;
     });
   }
 
   @override
-  void dispose() {
-    _answerController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context, [WidgetRef? _]) {
+  Widget build(BuildContext context) {
     return AppScaffold(
       title: 'Lessons',
       currentIndex: 0,

@@ -1,6 +1,7 @@
 /// Domain entities for the Content database (read-only, shipped with the app).
 /// Field names mirror the Content JSON Schema / DB schema in the engineering
 /// spec section 4.1 / 5.
+library;
 
 enum LanguageCode { english, tamil, hindi }
 

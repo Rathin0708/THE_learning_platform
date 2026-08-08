@@ -3,4 +3,4 @@
 /// file exists to keep the layer boundary explicit so platform code (e.g. a
 /// future home-screen widget or daily-reminder notification) has an obvious,
 /// pre-agreed place to live rather than leaking into `presentation/`.
-library home_infrastructure;
+library;
