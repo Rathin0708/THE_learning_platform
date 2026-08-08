@@ -21,4 +21,10 @@ abstract class ContentRepository {
   Future<List<ConversationLineEntity>> getConversationLines(int conversationId);
 
   Future<int> getWordCount();
+
+  /// Sentences whose source text contains [word] as a whole word (spec 6.4
+  /// adaptive-sequencing example: a missed word resurfaces alongside every
+  /// sentence using it). Word-boundary substring match — no lemmatization,
+  /// so inflected forms ("wants", "wanted") won't match "want".
+  Future<List<SentenceEntity>> getSentencesContainingWord(String word, {int limit = 10});
 }

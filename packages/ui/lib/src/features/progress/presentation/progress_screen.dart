@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../navigation/app_router.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../theme/app_theme.dart';
 import 'package:core/core.dart';
@@ -25,23 +27,73 @@ class ProgressScreen extends ConsumerWidget {
   }
 }
 
-class _ProgressBody extends StatelessWidget {
+class _ProgressBody extends ConsumerWidget {
   final LearningStats stats;
   const _ProgressBody({required this.stats});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final english = ((stats.masteryByLanguage['en'] ?? 0) * 100).round();
     final hindi = ((stats.masteryByLanguage['hi'] ?? 0) * 100).round();
+    final tamil = ((stats.masteryByLanguage['ta'] ?? 0) * 100).round();
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),
       children: [
         _StatRow(label: 'English', valueLabel: '$english%', progress: english / 100),
+        _StatRow(label: 'Tamil', valueLabel: '$tamil%', progress: tamil / 100),
         _StatRow(label: 'Hindi', valueLabel: '$hindi%', progress: hindi / 100),
         const SizedBox(height: AppSpacing.md),
         _MetricGrid(stats: stats),
+        const SizedBox(height: AppSpacing.md),
+        const _WeakWordsSection(),
       ],
+    );
+  }
+}
+
+/// Weak-word list (THE-33), surfaced on the dashboard per its acceptance
+/// criteria. Tapping a word jumps straight into a single-word practice
+/// session for it.
+class _WeakWordsSection extends ConsumerWidget {
+  const _WeakWordsSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weakIdsAsync = ref.watch(weakContentIdsProvider);
+    return weakIdsAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (e, st) => const SizedBox.shrink(),
+      data: (weakIds) {
+        if (weakIds.isEmpty) return const SizedBox.shrink();
+        return Card(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Needs practice (${weakIds.length})', style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: AppSpacing.sm),
+                for (final id in weakIds.take(10))
+                  FutureBuilder<WordDetail?>(
+                    future: ref.read(contentRepositoryProvider).getWordDetail(id),
+                    builder: (context, snapshot) {
+                      final word = snapshot.data?.word;
+                      if (word == null) return const SizedBox.shrink();
+                      return ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
+                        title: Text(word.word),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => context.push(AppRoutes.practiceWord(word.id)),
+                      );
+                    },
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

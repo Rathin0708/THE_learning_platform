@@ -210,4 +210,32 @@ class SqliteContentRepository implements ContentRepository {
     final rows = await db.rawQuery('SELECT COUNT(*) AS c FROM words');
     return (rows.first['c'] as int?) ?? 0;
   }
+
+  @override
+  Future<List<SentenceEntity>> getSentencesContainingWord(String word, {int limit = 10}) async {
+    final normalized = word.trim();
+    if (normalized.isEmpty) return [];
+
+    // Cheap LIKE pre-filter narrows the scan; the regex pass below then
+    // enforces real word boundaries so "want" doesn't also match "wanted".
+    final candidates = await db.query(
+      'sentences',
+      where: 'source_text LIKE ?',
+      whereArgs: ['%$normalized%'],
+      limit: limit * 5,
+    );
+
+    final boundaryPattern = RegExp(r'\b' + RegExp.escape(normalized) + r'\b', caseSensitive: false);
+    final matches = candidates.where((r) => boundaryPattern.hasMatch(r['source_text'] as String)).take(limit);
+
+    return matches
+        .map((r) => SentenceEntity(
+              id: r['id'] as int,
+              level: r['level'] as String,
+              category: r['category'] as String,
+              sourceLanguage: LanguageCodeX.fromCode(r['source_language'] as String),
+              sourceText: r['source_text'] as String,
+            ))
+        .toList();
+  }
 }

@@ -1,25 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:voice/voice.dart';
 
+import '../../../shared/widgets/speak_practice_card.dart';
 import '../../../theme/app_theme.dart';
-
-final _dueWordsProvider = FutureProvider.autoDispose<List<WordEntity>>((ref) async {
-  final ids = await ref.watch(dueReviewIdsProvider.future);
-  final repo = ref.watch(contentRepositoryProvider);
-  final words = <WordEntity>[];
-  for (final id in ids) {
-    final detail = await repo.getWordDetail(id);
-    if (detail != null) words.add(detail.word);
-  }
-  // Nothing reviewed yet: fall back to today's level so Today's Review is
-  // never an empty dead-end on day one.
-  if (words.isEmpty) {
-    return repo.getWordsByLevel(ref.read(currentLevelProvider), limit: 10);
-  }
-  return words;
-});
 
 final _singleWordProvider = FutureProvider.autoDispose.family<List<WordEntity>, int>((ref, wordId) async {
   final repo = ref.watch(contentRepositoryProvider);
@@ -47,7 +31,7 @@ class _StudySessionScreenState extends ConsumerState<StudySessionScreen> {
   Widget build(BuildContext context) {
     final wordsAsync = widget.singleWordId != null
         ? ref.watch(_singleWordProvider(widget.singleWordId!))
-        : ref.watch(_dueWordsProvider);
+        : ref.watch(prioritizedDueWordsProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.speakingMode ? 'Speaking Practice' : 'Review')),
@@ -68,6 +52,21 @@ class _StudySessionScreenState extends ConsumerState<StudySessionScreen> {
   }
 
   Widget _buildCard(WordEntity word) {
+    if (widget.speakingMode) {
+      // Speaking mode: real ASR record-and-score, not a flip card. The
+      // learner grades their own recall/pronunciation via the quality
+      // buttons below once they've heard their result.
+      return Padding(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: Column(
+          children: [
+            Expanded(child: SpeakPracticeCard(key: ValueKey(word.id), word: word)),
+            _qualityButtons(word),
+          ],
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.lg),
       child: Column(
@@ -83,16 +82,6 @@ class _StudySessionScreenState extends ConsumerState<StudySessionScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(word.word, style: Theme.of(context).textTheme.headlineMedium),
-                        if (widget.speakingMode) ...[
-                          const SizedBox(height: AppSpacing.sm),
-                          const Text('Say this word aloud, then tap to reveal.'),
-                          const SizedBox(height: AppSpacing.sm),
-                          IconButton(
-                            icon: const Icon(Icons.volume_up_outlined),
-                            tooltip: 'Hear it',
-                            onPressed: () => ref.read(textToSpeechServiceProvider).speak(word.word, word.language),
-                          ),
-                        ],
                         if (!_revealed) ...[
                           const SizedBox(height: AppSpacing.md),
                           const Text('Tap to reveal'),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:voice/voice.dart';
 
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/speak_practice_card.dart';
 import '../../../theme/app_theme.dart';
 
 enum _Stage { learn, practice, speak, quiz, mistakeReview, mastery }
@@ -24,9 +25,9 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
   final Set<int> _missedWordIds = {};
 
   Future<void> _startLesson() async {
-    final level = ref.read(currentLevelProvider);
-    final repo = ref.read(contentRepositoryProvider);
-    final words = await repo.getWordsByLevel(level, limit: 5);
+    // Weak words (repeated misses) are pulled to the front of the session
+    // so a lesson reinforces trouble spots first (THE-33).
+    final words = await ref.read(wordsForLessonProvider.future);
     setState(() {
       _sessionWords = words;
       _stage = _Stage.learn;
@@ -132,27 +133,9 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
   }
 
   Widget _speakStage(WordEntity word) {
-    // TTS playback is real (THE-21). Scoring the learner's own attempt
-    // needs ASR, which is a separate Phase 4 ticket (THE-37/39/40/44) —
-    // that gap is called out honestly rather than faked.
     return _stageScaffold(
       label: 'Speak',
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Say: "${word.word}"', style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton.icon(
-              icon: const Icon(Icons.volume_up_outlined),
-              label: const Text('Hear it'),
-              onPressed: () => ref.read(textToSpeechServiceProvider).speak(word.word, word.language),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            const Text('Pronunciation scoring arrives with ASR (Phase 4).'),
-          ],
-        ),
-      ),
+      child: SpeakPracticeCard(word: word),
       onNext: () {
         final isLastWord = _wordIndex >= _sessionWords!.length - 1;
         if (isLastWord) {
@@ -205,18 +188,47 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
           for (final word in missedWords)
             Card(
               margin: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: ListTile(
-                title: Text(word.word),
-                trailing: IconButton(
-                  icon: const Icon(Icons.volume_up_outlined),
-                  onPressed: () => ref.read(textToSpeechServiceProvider).speak(word.word, word.language),
-                ),
-                subtitle: FutureBuilder<WordDetail?>(
-                  future: ref.read(contentRepositoryProvider).getWordDetail(word.id),
-                  builder: (context, snapshot) {
-                    final translations = snapshot.data?.translations ?? {};
-                    return Text(translations.values.join(' · '));
-                  },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(word.word),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.volume_up_outlined),
+                        onPressed: () => ref.read(textToSpeechServiceProvider).speak(word.word, word.language),
+                      ),
+                      subtitle: FutureBuilder<WordDetail?>(
+                        future: ref.read(contentRepositoryProvider).getWordDetail(word.id),
+                        builder: (context, snapshot) {
+                          final translations = snapshot.data?.translations ?? {};
+                          return Text(translations.values.join(' · '));
+                        },
+                      ),
+                    ),
+                    // Adaptive resequencing (THE-34, spec 6.4): resurface
+                    // every sentence that uses the missed word too, not
+                    // just the word in isolation.
+                    FutureBuilder<List<SentenceEntity>>(
+                      future: ref.read(contentRepositoryProvider).getSentencesContainingWord(word.word, limit: 3),
+                      builder: (context, snapshot) {
+                        final sentences = snapshot.data ?? [];
+                        if (sentences.isEmpty) return const SizedBox.shrink();
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(AppSpacing.md, 0, AppSpacing.md, AppSpacing.sm),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Used in:', style: Theme.of(context).textTheme.labelSmall),
+                              for (final sentence in sentences)
+                                Text('• ${sentence.sourceText}', style: Theme.of(context).textTheme.bodySmall),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

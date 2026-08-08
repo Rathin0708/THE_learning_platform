@@ -28,6 +28,8 @@ class FakeContentRepository implements ContentRepository {
   Future<List<ConversationLineEntity>> getConversationLines(int conversationId) async => [];
   @override
   Future<int> getWordCount() async => words.length;
+  @override
+  Future<List<SentenceEntity>> getSentencesContainingWord(String word, {int limit = 10}) async => [];
 }
 
 class FakeProgressRepository implements ProgressRepository {
