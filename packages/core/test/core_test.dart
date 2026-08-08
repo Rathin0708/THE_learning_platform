@@ -14,6 +14,44 @@ Future<Database> _openInMemory(List<String> ddl) async {
 void main() {
   sqfliteFfiInit();
 
+  group('LocalAiRoutingPolicy (THE-55, spec 8.5)', () {
+    final policy = LocalAiRoutingPolicy();
+
+    test('routes normal lookup, translation, lesson content, and quiz to the database', () {
+      expect(policy.routeFor(InteractionType.normalLookup), RoutingDestination.database);
+      expect(policy.routeFor(InteractionType.existingTranslation), RoutingDestination.database);
+      expect(policy.routeFor(InteractionType.lessonContent), RoutingDestination.database);
+      expect(policy.routeFor(InteractionType.quiz), RoutingDestination.database);
+    });
+
+    test('routes scripted conversation to Engine A, not the local LLM', () {
+      expect(policy.routeFor(InteractionType.scriptedConversation), RoutingDestination.conversationEngineA);
+    });
+
+    test('only open-ended explanation ever reaches the local LLM', () {
+      for (final type in InteractionType.values) {
+        expect(policy.requiresLocalLlm(type), type == InteractionType.openEndedExplanation,
+            reason: '$type should ${type == InteractionType.openEndedExplanation ? "" : "not "}route to the local LLM');
+      }
+    });
+  });
+
+  group('LocalAiPlatformGate (THE-56, spec 7.3/12: desktop-weighted, never forced onto mobile)', () {
+    final gate = LocalAiPlatformGate();
+
+    test('local AI is available on desktop platforms', () {
+      expect(gate.isLocalAiAvailable(DevicePlatform.windows), isTrue);
+      expect(gate.isLocalAiAvailable(DevicePlatform.macos), isTrue);
+      expect(gate.isLocalAiAvailable(DevicePlatform.linux), isTrue);
+    });
+
+    test('local AI is never offered on mobile or web', () {
+      expect(gate.isLocalAiAvailable(DevicePlatform.android), isFalse);
+      expect(gate.isLocalAiAvailable(DevicePlatform.ios), isFalse);
+      expect(gate.isLocalAiAvailable(DevicePlatform.web), isFalse);
+    });
+  });
+
   group('ConversationResponseMatcher (THE-47)', () {
     final matcher = ConversationResponseMatcher();
 

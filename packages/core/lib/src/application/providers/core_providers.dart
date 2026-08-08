@@ -7,6 +7,7 @@ import '../../domain/entities/content_entities.dart';
 import '../../domain/entities/user_entities.dart';
 import '../../domain/repositories/content_repository.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../../domain/ai/local_ai_routing_policy.dart';
 import '../conversation/conversation_response_matcher.dart';
 import '../srs/spaced_repetition_engine.dart';
 
@@ -31,6 +32,10 @@ final progressRepositoryProvider = Provider<ProgressRepository>((ref) {
 final srsEngineProvider = Provider<SpacedRepetitionEngine>((ref) => SpacedRepetitionEngine());
 
 final conversationResponseMatcherProvider = Provider<ConversationResponseMatcher>((ref) => ConversationResponseMatcher());
+
+final localAiRoutingPolicyProvider = Provider<LocalAiRoutingPolicy>((ref) => LocalAiRoutingPolicy());
+
+final localAiPlatformGateProvider = Provider<LocalAiPlatformGate>((ref) => LocalAiPlatformGate());
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
