@@ -42,3 +42,21 @@ unlike desktop/mobile, which copy `content.db`'s bytes directly.
 `WebContentSeeder` (packages/core) populates the empty web database from
 `content.json` on first launch instead. Same source of truth, a second
 output format purely because of that platform constraint.
+
+## Speech recognition model (THE-37)
+
+`apps/mobile/assets/models/ggml-tiny.bin` is a third-party binary
+(~77.7MB, the multilingual Whisper "tiny" GGML model) and is not
+committed to git. Download it once:
+
+```
+mkdir -p apps/mobile/assets/models
+curl -L -o apps/mobile/assets/models/ggml-tiny.bin \
+  https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.bin
+```
+
+This is the bundled fallback ASR engine (`WhisperFallbackService`,
+packages/voice) used when the OS on-device speech recognizer isn't
+available for the requested language/device — see spec 7.1. Without
+this file present, that fallback path returns "unavailable" rather than
+failing to build; the app still runs, just without the fallback.
