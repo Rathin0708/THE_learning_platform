@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/content_update/content_update_checker.dart';
 import '../../data/database/app_database.dart';
 import '../../data/repositories/sqlite_content_repository.dart';
 import '../../data/repositories/sqlite_progress_repository.dart';
@@ -149,5 +150,52 @@ final reviewContentProvider = Provider<Future<void> Function(int contentId, int 
     await progressRepo.logReview(contentId, quality, DateTime.now());
     ref.invalidate(dueReviewIdsProvider);
     ref.invalidate(learningStatsProvider);
+  };
+});
+
+/// Versioned content updates (THE-67, spec 8.4).
+final contentUpdateCheckerProvider = Provider<ContentUpdateChecker>((ref) {
+  final checker = ContentUpdateChecker();
+  ref.onDispose(checker.close);
+  return checker;
+});
+
+final contentVersionProvider = FutureProvider.autoDispose<int>((ref) async {
+  final repo = ref.watch(progressRepositoryProvider);
+  return repo.getContentVersion();
+});
+
+enum ContentUpdateCheckOutcome { noUpdateConfigured, upToDate, noNetwork, applied, failed }
+
+/// Checks [manifestUrl] for a newer content pack and installs it if found.
+/// Every non-success path (no network, bad manifest, checksum mismatch)
+/// resolves to a clear outcome rather than throwing — spec 8.4's "no
+/// internet -> continues on currently installed content, unaffected".
+final checkForContentUpdateProvider = Provider<Future<ContentUpdateCheckOutcome> Function(String manifestUrl)>((ref) {
+  return (String manifestUrl) async {
+    if (manifestUrl.trim().isEmpty) return ContentUpdateCheckOutcome.noUpdateConfigured;
+
+    final checker = ref.read(contentUpdateCheckerProvider);
+    final manifest = await checker.checkForUpdate(manifestUrl);
+    if (manifest == null) return ContentUpdateCheckOutcome.noNetwork;
+
+    final progressRepo = ref.read(progressRepositoryProvider);
+    final currentVersion = await progressRepo.getContentVersion();
+    final db = ref.read(appDatabaseProvider);
+
+    final result = await db.applyContentUpdate(checker, manifest, currentVersion);
+    switch (result.status) {
+      case ContentUpdateStatus.upToDate:
+        return ContentUpdateCheckOutcome.upToDate;
+      case ContentUpdateStatus.installed:
+        await progressRepo.setContentVersion(result.installedVersion!);
+        ref.invalidate(contentVersionProvider);
+        return ContentUpdateCheckOutcome.applied;
+      case ContentUpdateStatus.noNetwork:
+      case ContentUpdateStatus.manifestInvalid:
+      case ContentUpdateStatus.downloadFailed:
+      case ContentUpdateStatus.checksumMismatch:
+        return ContentUpdateCheckOutcome.failed;
+    }
   };
 });

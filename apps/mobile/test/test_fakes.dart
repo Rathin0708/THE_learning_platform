@@ -53,4 +53,8 @@ class FakeProgressRepository implements ProgressRepository {
   Future<List<String>> getRecentSearches({int limit = 10}) async => [];
   @override
   Future<void> addRecentSearch(String query) async {}
+  @override
+  Future<int> getContentVersion() async => 1;
+  @override
+  Future<void> setContentVersion(int version) async {}
 }

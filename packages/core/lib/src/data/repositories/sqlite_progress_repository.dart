@@ -217,4 +217,22 @@ class SqliteProgressRepository implements ProgressRepository {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  static const _contentVersionKey = 'content_version';
+
+  @override
+  Future<int> getContentVersion() async {
+    final rows = await db.query('user_settings', where: 'key = ?', whereArgs: [_contentVersionKey], limit: 1);
+    if (rows.isEmpty) return 1;
+    return int.tryParse(rows.first['value'] as String) ?? 1;
+  }
+
+  @override
+  Future<void> setContentVersion(int version) async {
+    await db.insert(
+      'user_settings',
+      {'key': _contentVersionKey, 'value': version.toString()},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
 }

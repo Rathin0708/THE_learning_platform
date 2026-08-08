@@ -6,6 +6,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../content_update/content_update_checker.dart';
 import 'schema.dart';
 import 'web_content_seeder.dart';
 
@@ -23,10 +24,17 @@ import 'web_content_seeder.dart';
 class AppDatabase {
   Database? _contentDb;
   Database? _userDb;
+  String? _contentDbFilePath;
 
   static const String _contentDbAssetPath = 'assets/content/content.db';
   static const String _contentDbFileName = 'content.db';
   static const String _userDbFileName = 'user.db';
+
+  /// The content database's real filesystem path — needed by
+  /// ContentUpdateChecker (THE-67) to know what file to replace. Null on
+  /// web, where there is no filesystem (content lives in IndexedDB
+  /// instead; versioned file swaps don't apply there).
+  String? get contentDbFilePath => _contentDbFilePath;
 
   Database get content {
     final db = _contentDb;
@@ -57,6 +65,7 @@ class AppDatabase {
 
   Future<Database> _openContentDatabase(String supportDirPath) async {
     final dbPath = p.join(supportDirPath, _contentDbFileName);
+    _contentDbFilePath = dbPath;
     final file = File(dbPath);
 
     if (!await file.exists()) {
@@ -111,5 +120,34 @@ class AppDatabase {
   Future<void> close() async {
     await _contentDb?.close();
     await _userDb?.close();
+  }
+
+  /// Applies a content update (THE-67) safely: the sqflite connection
+  /// must be closed *before* the file is replaced — on Windows in
+  /// particular, an open file handle blocks the rename ContentUpdateChecker
+  /// does internally, so skipping this would make the update silently
+  /// fail (or corrupt the file) rather than just not applying. Reopens
+  /// the (possibly new) database afterward either way, so the app is
+  /// never left without a usable content connection.
+  Future<ContentUpdateResult> applyContentUpdate(
+    ContentUpdateChecker checker,
+    ContentUpdateManifest manifest,
+    int currentVersion,
+  ) async {
+    final path = _contentDbFilePath;
+    if (kIsWeb || path == null) {
+      return const ContentUpdateResult(ContentUpdateStatus.downloadFailed);
+    }
+
+    await _contentDb?.close();
+    final result = await checker.downloadAndInstall(manifest, installPath: path, currentVersion: currentVersion);
+
+    final db = await openDatabase(path, readOnly: false, version: 1);
+    for (final statement in contentDatabaseDdl) {
+      await db.execute(statement);
+    }
+    _contentDb = db;
+
+    return result;
   }
 }

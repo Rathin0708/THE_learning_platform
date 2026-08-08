@@ -24,4 +24,10 @@ abstract class ProgressRepository {
   Future<List<String>> getRecentSearches({int limit = 10});
 
   Future<void> addRecentSearch(String query);
+
+  /// Currently installed content pack version (THE-67, spec 8.4). Defaults
+  /// to 1 — the version the app ships with — until an update is applied.
+  Future<int> getContentVersion();
+
+  Future<void> setContentVersion(int version);
 }

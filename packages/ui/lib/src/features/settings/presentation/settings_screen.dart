@@ -78,9 +78,67 @@ class SettingsScreen extends ConsumerWidget {
                 trailing: Icon(available ? Icons.check_circle_outline : Icons.block_outlined),
               );
             }),
+            if (!kIsWeb) const _ContentUpdateSection(),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Content update UI (THE-67). No production manifest server exists for
+/// this project — that's a hosting decision outside this app's code, not
+/// something to fabricate — so this honestly reports "not configured"
+/// rather than pretending to reach a real CDN. The download/verify/
+/// install machinery itself (ContentUpdateChecker) is real and tested
+/// against an actual local HTTP server (see content_update_checker_test.dart).
+class _ContentUpdateSection extends ConsumerStatefulWidget {
+  const _ContentUpdateSection();
+
+  @override
+  ConsumerState<_ContentUpdateSection> createState() => _ContentUpdateSectionState();
+}
+
+class _ContentUpdateSectionState extends ConsumerState<_ContentUpdateSection> {
+  bool _checking = false;
+  String? _lastResultMessage;
+
+  static const _manifestUrl = ''; // no production content CDN configured
+
+  Future<void> _checkNow() async {
+    setState(() {
+      _checking = true;
+      _lastResultMessage = null;
+    });
+    final outcome = await ref.read(checkForContentUpdateProvider)(_manifestUrl);
+    if (!mounted) return;
+    setState(() {
+      _checking = false;
+      _lastResultMessage = switch (outcome) {
+        ContentUpdateCheckOutcome.noUpdateConfigured => 'No content update server is configured yet.',
+        ContentUpdateCheckOutcome.upToDate => 'Content is already up to date.',
+        ContentUpdateCheckOutcome.noNetwork => 'Could not reach the update server — using current content.',
+        ContentUpdateCheckOutcome.applied => 'Content updated successfully.',
+        ContentUpdateCheckOutcome.failed => 'Update check failed — using current content.',
+      };
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final versionAsync = ref.watch(contentVersionProvider);
+    return ListTile(
+      title: const Text('Content pack version'),
+      subtitle: Text(
+        versionAsync.when(
+          data: (v) => _lastResultMessage ?? 'v$v (bundled)',
+          loading: () => 'Loading…',
+          error: (e, st) => 'Unknown',
+        ),
+      ),
+      trailing: _checking
+          ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+          : TextButton(onPressed: _checkNow, child: const Text('Check')),
     );
   }
 }
