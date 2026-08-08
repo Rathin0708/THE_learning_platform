@@ -311,10 +311,46 @@ class ContentCompiler:
             self.stats["quiz_questions"] += 1
 
 
+EXPORT_TABLES = [
+    "languages", "levels", "categories", "words", "translations", "sentences",
+    "sentence_translations", "pronunciations", "examples", "grammar",
+    "conversations", "conversation_lines", "quiz_questions",
+]
+
+
+def export_json(db_path: Path, json_path: Path):
+    """
+    Web (THE-58) has no API to import an existing SQLite file into
+    IndexedDB-backed storage (sqflite_common_ffi_web creates only empty
+    databases). This JSON export lets the Dart-side web seeder recreate
+    the same rows via plain INSERTs against an empty web database on
+    first launch — same source of truth, a second output format solely
+    because of that platform constraint.
+    """
+    import json
+
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    export = {}
+    for table in EXPORT_TABLES:
+        cur.execute(f"SELECT * FROM {table}")
+        export[table] = [dict(row) for row in cur.fetchall()]
+    conn.close()
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(export, f, ensure_ascii=False)
+
+    return {table: len(rows) for table, rows in export.items()}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", default=str(Path(__file__).parent.parent.parent / "content" / "source"))
     parser.add_argument("--out", default=str(Path(__file__).parent.parent.parent / "build" / "content.db"))
+    parser.add_argument("--json-out", default=None,
+                         help="Also export a JSON dump for the web seeder (THE-58). Defaults to <out>.json")
     args = parser.parse_args()
 
     compiler = ContentCompiler(Path(args.source), Path(args.out))
@@ -326,6 +362,12 @@ def main():
 
     print(f"Compiled content database -> {args.out}")
     for key, value in stats.items():
+        print(f"  {key}: {value}")
+
+    json_out = Path(args.json_out) if args.json_out else Path(args.out).with_suffix(".json")
+    export_stats = export_json(Path(args.out), json_out)
+    print(f"Exported JSON for web seeder -> {json_out}")
+    for key, value in export_stats.items():
         print(f"  {key}: {value}")
 
 

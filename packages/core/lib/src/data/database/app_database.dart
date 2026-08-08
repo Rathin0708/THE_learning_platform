@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'schema.dart';
+import 'web_content_seeder.dart';
 
 /// Opens the two local databases described in spec section 4:
 /// - Content DB: read-only, shipped as a bundled asset, copied to a writable
@@ -13,6 +15,11 @@ import 'schema.dart';
 ///   bundle) and never rewritten afterwards.
 /// - User DB: read/write, created fresh on-device, holds all learning
 ///   progress and settings, never leaves the device.
+///
+/// Web (THE-58) is a genuinely different code path: there is no
+/// filesystem to copy content.db into, and sqflite_common_ffi_web always
+/// creates a database empty — WebContentSeeder populates it from a JSON
+/// export instead. Desktop/mobile keep the original file-copy approach.
 class AppDatabase {
   Database? _contentDb;
   Database? _userDb;
@@ -38,6 +45,11 @@ class AppDatabase {
   }
 
   Future<void> open() async {
+    if (kIsWeb) {
+      _contentDb = await _openContentDatabaseWeb();
+      _userDb = await _openUserDatabaseWeb();
+      return;
+    }
     final supportDir = await getApplicationSupportDirectory();
     _contentDb = await _openContentDatabase(supportDir.path);
     _userDb = await _openUserDatabase(supportDir.path);
@@ -71,6 +83,25 @@ class AppDatabase {
   Future<Database> _openUserDatabase(String supportDirPath) async {
     final dbPath = p.join(supportDirPath, _userDbFileName);
     final db = await openDatabase(dbPath, version: 1);
+    for (final statement in userDatabaseDdl) {
+      await db.execute(statement);
+    }
+    return db;
+  }
+
+  Future<Database> _openContentDatabaseWeb() async {
+    final db = await openDatabase(_contentDbFileName, version: 1);
+    for (final statement in contentDatabaseDdl) {
+      await db.execute(statement);
+    }
+    // Same graceful fallback as desktop/mobile if no export is bundled:
+    // WebContentSeeder.seedIfEmpty() no-ops rather than throwing.
+    await WebContentSeeder().seedIfEmpty(db);
+    return db;
+  }
+
+  Future<Database> _openUserDatabaseWeb() async {
+    final db = await openDatabase(_userDbFileName, version: 1);
     for (final statement in userDatabaseDdl) {
       await db.execute(statement);
     }
