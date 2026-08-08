@@ -38,6 +38,22 @@ final searchResultsProvider = FutureProvider.autoDispose<List<SearchResult>>((re
   return repo.search(query);
 });
 
+/// Recent-search cache (spec 9.3), most-recent-first.
+final recentSearchesProvider = FutureProvider.autoDispose<List<String>>((ref) async {
+  final repo = ref.watch(progressRepositoryProvider);
+  return repo.getRecentSearches();
+});
+
+/// Records a completed search (on submit, not on every keystroke) and
+/// refreshes the recent-search cache.
+final recordSearchProvider = Provider<Future<void> Function(String query)>((ref) {
+  return (String query) async {
+    final repo = ref.read(progressRepositoryProvider);
+    await repo.addRecentSearch(query);
+    ref.invalidate(recentSearchesProvider);
+  };
+});
+
 final currentLevelProvider = StateProvider<String>((ref) => 'level_1');
 
 final wordsForLevelProvider = FutureProvider.autoDispose<List<WordEntity>>((ref) async {

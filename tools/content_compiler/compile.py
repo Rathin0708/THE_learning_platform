@@ -84,7 +84,8 @@ DDL_STATEMENTS = [
     "CREATE INDEX idx_conversation_lines_conv ON conversation_lines(conversation_id)",
     """CREATE TABLE quiz_questions (
         id INTEGER PRIMARY KEY, level TEXT NOT NULL, type TEXT NOT NULL,
-        question TEXT NOT NULL, answer TEXT NOT NULL, options TEXT)""",
+        question TEXT NOT NULL, answer TEXT NOT NULL, options TEXT,
+        content_id INTEGER REFERENCES words(id))""",
     """CREATE VIRTUAL TABLE words_fts USING fts5(word, normalized_word, romanized)""",
 ]
 
@@ -284,7 +285,7 @@ class ContentCompiler:
         """
         cur.execute(
             """
-            SELECT sw.word AS source_word, sw.level AS level, tw.word AS answer, tw.id AS answer_id
+            SELECT sw.word AS source_word, sw.level AS level, tw.word AS answer, sw.id AS source_word_id
             FROM translations t
             JOIN words sw ON sw.id = t.source_word_id
             JOIN words tw ON tw.id = t.target_word_id
@@ -299,13 +300,13 @@ class ContentCompiler:
         import random
         rng = random.Random(42)  # deterministic output across compiler runs
 
-        for source_word, level, answer, _ in rows:
+        for source_word, level, answer, source_word_id in rows:
             distractors = rng.sample([a for a in all_answers if a != answer], k=min(3, len(all_answers) - 1))
             options = distractors + [answer]
             rng.shuffle(options)
             cur.execute(
-                "INSERT INTO quiz_questions (level, type, question, answer, options) VALUES (?,?,?,?,?)",
-                (level, "translate_en_to_ta", f"Translate to Tamil: '{source_word}'", answer, "|".join(options)),
+                "INSERT INTO quiz_questions (level, type, question, answer, options, content_id) VALUES (?,?,?,?,?,?)",
+                (level, "translate_en_to_ta", f"Translate to Tamil: '{source_word}'", answer, "|".join(options), source_word_id),
             )
             self.stats["quiz_questions"] += 1
 

@@ -181,6 +181,11 @@ class QuizQuestionEntity {
   final String answer;
   final List<String> options;
 
+  /// The word this question tests, so answering it can update that word's
+  /// SRS progress (user_progress). Null for question types not tied to a
+  /// specific word.
+  final int? contentId;
+
   const QuizQuestionEntity({
     required this.id,
     required this.level,
@@ -188,6 +193,7 @@ class QuizQuestionEntity {
     required this.question,
     required this.answer,
     this.options = const [],
+    this.contentId,
   });
 }
 

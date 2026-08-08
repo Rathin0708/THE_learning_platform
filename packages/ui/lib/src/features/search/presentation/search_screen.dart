@@ -8,7 +8,8 @@ import '../../../theme/app_theme.dart';
 
 /// Multi-script search (THE-17, spec 9.3): typing a native-script term, a
 /// transliterated term, or the English equivalent all resolve to the same
-/// result cluster via the FTS5 index in packages/core.
+/// result cluster via the FTS5 index in packages/core. Recent searches are
+/// cached and surfaced when the search box is empty.
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
@@ -23,6 +24,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void _runSearch(String value) {
+    ref.read(searchQueryProvider.notifier).state = value;
+    if (value.trim().isNotEmpty) {
+      ref.read(recordSearchProvider)(value);
+    }
   }
 
   @override
@@ -44,7 +52,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 hintText: 'Search words... (e.g. "sapidu", "eat", "சாப்பிடு")',
                 prefixIcon: Icon(Icons.search),
               ),
+              // Live filtering as the user types...
               onChanged: (value) => ref.read(searchQueryProvider.notifier).state = value,
+              // ...but only a completed search (submit) is recorded into
+              // recent searches, so "s", "sa", "sap" don't all get cached.
+              onSubmitted: _runSearch,
             ),
             const SizedBox(height: AppSpacing.md),
             Expanded(
@@ -53,7 +65,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 error: (e, st) => Center(child: Text('Search failed: $e')),
                 data: (results) {
                   if (_controller.text.trim().isEmpty) {
-                    return const Center(child: Text('Start typing to search.'));
+                    return _RecentSearches(
+                      onTap: (query) {
+                        _controller.text = query;
+                        _runSearch(query);
+                      },
+                    );
                   }
                   if (results.isEmpty) {
                     return const Center(child: Text('No matches found.'));
@@ -68,6 +85,39 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _RecentSearches extends ConsumerWidget {
+  final void Function(String query) onTap;
+  const _RecentSearches({required this.onTap});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final recentAsync = ref.watch(recentSearchesProvider);
+    return recentAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (e, st) => const SizedBox.shrink(),
+      data: (recent) {
+        if (recent.isEmpty) {
+          return const Center(child: Text('Start typing to search.'));
+        }
+        return ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+              child: Text('Recent searches', style: Theme.of(context).textTheme.labelLarge),
+            ),
+            for (final query in recent)
+              ListTile(
+                leading: const Icon(Icons.history),
+                title: Text(query),
+                onTap: () => onTap(query),
+              ),
+          ],
+        );
+      },
     );
   }
 }

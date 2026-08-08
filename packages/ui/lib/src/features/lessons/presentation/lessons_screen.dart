@@ -183,8 +183,8 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
         }
         return _QuizQuestionList(
           questions: questions,
-          onFinished: (missedQuestionIds) {
-            _missedWordIds.addAll(missedQuestionIds);
+          onFinished: (missedContentIds) {
+            _missedWordIds.addAll(missedContentIds);
             setState(() => _stage = _mistakeOrMasteryStage());
           },
         );
@@ -195,10 +195,32 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
   _Stage _mistakeOrMasteryStage() => _missedWordIds.isEmpty ? _Stage.mastery : _Stage.mistakeReview;
 
   Widget _mistakeReviewStage(List<WordEntity> words) {
+    final missedWords = words.where((w) => _missedWordIds.contains(w.id)).toList();
     return _stageScaffold(
       label: 'Mistake Review',
-      child: Center(
-        child: Text('You missed ${_missedWordIds.length} question(s). Review them before mastery.'),
+      child: ListView(
+        children: [
+          Text('You missed ${missedWords.length} word(s) — review them before mastery:'),
+          const SizedBox(height: AppSpacing.md),
+          for (final word in missedWords)
+            Card(
+              margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+              child: ListTile(
+                title: Text(word.word),
+                trailing: IconButton(
+                  icon: const Icon(Icons.volume_up_outlined),
+                  onPressed: () => ref.read(textToSpeechServiceProvider).speak(word.word, word.language),
+                ),
+                subtitle: FutureBuilder<WordDetail?>(
+                  future: ref.read(contentRepositoryProvider).getWordDetail(word.id),
+                  builder: (context, snapshot) {
+                    final translations = snapshot.data?.translations ?? {};
+                    return Text(translations.values.join(' · '));
+                  },
+                ),
+              ),
+            ),
+        ],
       ),
       onNext: () => setState(() => _stage = _Stage.mastery),
       nextLabel: 'Continue to Mastery',
@@ -234,7 +256,7 @@ class _LessonsScreenState extends ConsumerState<LessonsScreen> {
 
 class _QuizQuestionList extends StatefulWidget {
   final List<QuizQuestionEntity> questions;
-  final void Function(List<int> missedQuestionIds) onFinished;
+  final void Function(List<int> missedContentIds) onFinished;
   const _QuizQuestionList({required this.questions, required this.onFinished});
 
   @override
@@ -247,7 +269,10 @@ class _QuizQuestionListState extends State<_QuizQuestionList> {
 
   void _answer(String selected) {
     final q = widget.questions[_index];
-    if (selected != q.answer) _missed.add(q.id);
+    // Use contentId (the word being tested), not the quiz question's own id
+    // — those are different ID spaces and comparing them against WordEntity
+    // ids elsewhere would silently misidentify which words were missed.
+    if (selected != q.answer && q.contentId != null) _missed.add(q.contentId!);
     if (_index == widget.questions.length - 1) {
       widget.onFinished(_missed);
     } else {

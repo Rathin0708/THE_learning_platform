@@ -59,6 +59,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                                 _selected = option;
                                 if (correct) _correct++;
                               });
+                              // Persist this answer against the tested word's SRS
+                              // progress, same as any other review (THE-24, THE-29).
+                              if (q.contentId != null) {
+                                await ref.read(reviewContentProvider)(q.contentId!, correct ? 4 : 2);
+                              }
                               await Future<void>.delayed(const Duration(milliseconds: 500));
                               if (!mounted) return;
                               setState(() {

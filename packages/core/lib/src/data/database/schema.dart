@@ -129,7 +129,8 @@ const List<String> contentDatabaseDdl = [
     type TEXT NOT NULL,
     question TEXT NOT NULL,
     answer TEXT NOT NULL,
-    options TEXT
+    options TEXT,
+    content_id INTEGER REFERENCES words(id)
   );
   ''',
   // FTS5 virtual table across English, Tamil, Hindi, Roman Hindi (spec 4.3).

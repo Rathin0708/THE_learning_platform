@@ -36,6 +36,7 @@ class AppRoutes {
   static const settings = '/settings';
   static String wordDetail(int id) => '/word/$id';
   static String conversationDetail(int id) => '/conversation/$id';
+  static String practiceWord(int id) => '/practice/word/$id';
 }
 
 GoRouter buildAppRouter({required bool onboardingComplete}) {
@@ -48,6 +49,10 @@ GoRouter buildAppRouter({required bool onboardingComplete}) {
       GoRoute(path: AppRoutes.sentences, builder: (context, state) => const SentencesScreen()),
       GoRoute(path: AppRoutes.lessons, builder: (context, state) => const LessonsScreen()),
       GoRoute(path: AppRoutes.practice, builder: (context, state) => const StudySessionScreen()),
+      GoRoute(
+        path: '/practice/word/:id',
+        builder: (context, state) => StudySessionScreen(singleWordId: int.parse(state.pathParameters['id']!)),
+      ),
       GoRoute(path: AppRoutes.speaking, builder: (context, state) => const StudySessionScreen(speakingMode: true)),
       GoRoute(path: AppRoutes.listening, builder: (context, state) => const VocabularyScreen(listeningMode: true)),
       GoRoute(path: AppRoutes.conversation, builder: (context, state) => const ConversationListScreen()),

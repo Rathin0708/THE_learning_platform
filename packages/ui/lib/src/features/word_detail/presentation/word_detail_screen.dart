@@ -1,8 +1,10 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:voice/voice.dart';
 
+import '../../../navigation/app_router.dart';
 import '../../../theme/app_theme.dart';
 
 final _wordDetailProvider = FutureProvider.autoDispose.family<WordDetail?, int>((ref, wordId) async {
@@ -110,9 +112,7 @@ class _WordDetailBody extends ConsumerWidget {
               child: FilledButton.icon(
                 icon: const Icon(Icons.school_outlined),
                 label: const Text('Practice'),
-                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Added "${word.word}" to your practice queue.')),
-                ),
+                onPressed: () => context.push(AppRoutes.practiceWord(word.id)),
               ),
             ),
           ],

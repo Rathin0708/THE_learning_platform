@@ -21,11 +21,19 @@ final _dueWordsProvider = FutureProvider.autoDispose<List<WordEntity>>((ref) asy
   return words;
 });
 
-/// Backs both /practice, /revision, and (with [speakingMode]) /speaking:
-/// a due-review flashcard flow driven directly by the SRS engine.
+final _singleWordProvider = FutureProvider.autoDispose.family<List<WordEntity>, int>((ref, wordId) async {
+  final repo = ref.watch(contentRepositoryProvider);
+  final detail = await repo.getWordDetail(wordId);
+  return detail == null ? [] : [detail.word];
+});
+
+/// Backs /practice, /revision, /speaking (due-review queue), and — when
+/// [singleWordId] is set — the per-word practice flow launched from the
+/// Word Detail screen's Practice button (THE-27).
 class StudySessionScreen extends ConsumerStatefulWidget {
   final bool speakingMode;
-  const StudySessionScreen({super.key, this.speakingMode = false});
+  final int? singleWordId;
+  const StudySessionScreen({super.key, this.speakingMode = false, this.singleWordId});
 
   @override
   ConsumerState<StudySessionScreen> createState() => _StudySessionScreenState();
@@ -37,7 +45,9 @@ class _StudySessionScreenState extends ConsumerState<StudySessionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final wordsAsync = ref.watch(_dueWordsProvider);
+    final wordsAsync = widget.singleWordId != null
+        ? ref.watch(_singleWordProvider(widget.singleWordId!))
+        : ref.watch(_dueWordsProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.speakingMode ? 'Speaking Practice' : 'Review')),

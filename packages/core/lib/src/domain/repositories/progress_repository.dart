@@ -18,4 +18,10 @@ abstract class ProgressRepository {
   Future<UserSettingsEntity> getSettings();
 
   Future<void> saveSettings(UserSettingsEntity settings);
+
+  /// Most-recent-first list of past search queries (spec 9.3 recent-search
+  /// cache), capped at [limit].
+  Future<List<String>> getRecentSearches({int limit = 10});
+
+  Future<void> addRecentSearch(String query);
 }

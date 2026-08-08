@@ -170,6 +170,7 @@ class SqliteContentRepository implements ContentRepository {
               question: r['question'] as String,
               answer: r['answer'] as String,
               options: ((r['options'] as String?) ?? '').split('|').where((s) => s.isNotEmpty).toList(),
+              contentId: r['content_id'] as int?,
             ))
         .toList();
   }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sqflite/sqflite.dart';
 
 import '../../domain/entities/user_entities.dart';
@@ -142,5 +144,28 @@ class SqliteProgressRepository implements ProgressRepository {
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
+  }
+
+  static const _recentSearchesKey = 'recent_searches';
+
+  @override
+  Future<List<String>> getRecentSearches({int limit = 10}) async {
+    final rows = await db.query('user_settings', where: 'key = ?', whereArgs: [_recentSearchesKey], limit: 1);
+    if (rows.isEmpty) return [];
+    final decoded = jsonDecode(rows.first['value'] as String) as List<dynamic>;
+    return decoded.cast<String>().take(limit).toList();
+  }
+
+  @override
+  Future<void> addRecentSearch(String query) async {
+    final trimmed = query.trim();
+    if (trimmed.isEmpty) return;
+    final current = await getRecentSearches(limit: 50);
+    final updated = [trimmed, ...current.where((q) => q.toLowerCase() != trimmed.toLowerCase())].take(10).toList();
+    await db.insert(
+      'user_settings',
+      {'key': _recentSearchesKey, 'value': jsonEncode(updated)},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }
