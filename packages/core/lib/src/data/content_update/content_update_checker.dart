@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
+
+import '../install_pack/install_pack_installer.dart';
 
 /// Versioned content update mechanism (THE-67, spec 8.4):
 ///
@@ -73,6 +73,10 @@ class ContentUpdateChecker {
   /// The old file is kept as [installPath].bak until the new one is
   /// verified in place, then deleted — so a failure partway through never
   /// leaves the app with a half-written or missing content database.
+  ///
+  /// Delegates the actual download/verify/swap to [InstallPackInstaller]
+  /// (THE-68) as a single-file pack — the version-gate above is the only
+  /// content-specific logic left here.
   Future<ContentUpdateResult> downloadAndInstall(
     ContentUpdateManifest manifest, {
     required String installPath,
@@ -82,38 +86,17 @@ class ContentUpdateChecker {
       return const ContentUpdateResult(ContentUpdateStatus.upToDate);
     }
 
-    final tempPath = '$installPath.download';
-    final backupPath = '$installPath.bak';
+    final events = await InstallPackInstaller(client: _client).install([
+      InstallPackFileSpec(url: manifest.url, sha256: manifest.sha256, sizeBytes: manifest.sizeBytes, installPath: installPath),
+    ]).toList();
 
-    List<int> bytes;
-    try {
-      final response = await _client.get(Uri.parse(manifest.url)).timeout(const Duration(minutes: 5));
-      if (response.statusCode != 200) return const ContentUpdateResult(ContentUpdateStatus.downloadFailed);
-      bytes = response.bodyBytes;
-    } catch (_) {
-      return const ContentUpdateResult(ContentUpdateStatus.downloadFailed);
-    }
-
-    final actualChecksum = sha256.convert(bytes).toString();
-    if (actualChecksum != manifest.sha256) {
-      return const ContentUpdateResult(ContentUpdateStatus.checksumMismatch);
-    }
-
-    final tempFile = File(tempPath);
-    await tempFile.writeAsBytes(bytes, flush: true);
-
-    final installFile = File(installPath);
-    if (await installFile.exists()) {
-      await installFile.rename(backupPath);
-    }
-    await tempFile.rename(installPath);
-
-    final backupFile = File(backupPath);
-    if (await backupFile.exists()) {
-      await backupFile.delete();
-    }
-
-    return ContentUpdateResult(ContentUpdateStatus.installed, installedVersion: manifest.version);
+    return switch (events.last.status) {
+      InstallPackStatus.complete => ContentUpdateResult(ContentUpdateStatus.installed, installedVersion: manifest.version),
+      InstallPackStatus.checksumMismatch => const ContentUpdateResult(ContentUpdateStatus.checksumMismatch),
+      InstallPackStatus.downloadFailed || InstallPackStatus.inProgress => const ContentUpdateResult(
+          ContentUpdateStatus.downloadFailed,
+        ),
+    };
   }
 
   void close() => _client.close();

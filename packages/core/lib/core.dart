@@ -12,6 +12,7 @@ export 'src/data/database/app_database.dart';
 export 'src/data/database/database_factory_setup.dart';
 export 'src/data/database/schema.dart';
 export 'src/data/content_update/content_update_checker.dart';
+export 'src/data/install_pack/install_pack_installer.dart';
 export 'src/data/repositories/sqlite_content_repository.dart';
 export 'src/data/repositories/sqlite_progress_repository.dart';
 
