@@ -205,6 +205,7 @@ class ContentCompiler:
             cur.execute("INSERT INTO levels (id, name, rank) VALUES (?,?,?)", (id_, name, rank))
 
         words_data = self.load_yaml("words.yaml").get("concepts", [])
+        words_data += self.load_yaml("words_wiktionary.yaml").get("concepts", [])
         self._compile_words(cur, words_data)
 
         sentences_data = self.load_yaml("sentences.yaml").get("sentences", [])
