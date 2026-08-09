@@ -1,0 +1,225 @@
+# Additional conversation scenarios beyond the original 20 MVP set
+# (THE-48, spec 6.1). Same shape as conversations.yaml/conversations_extra.yaml.
+#
+# IMPORTANT: the English lines are the source of truth; the Tamil
+# `translation` lines are LLM-drafted, not written or checked by a native
+# Tamil speaker. Treat every line here as a draft pending native-speaker
+# review before it ships to real learners — do not assume it's
+# production-quality just because it compiles and follows the right shape.
+
+conversations:
+  - id: c_weather
+    level: level_1
+    scenario: "21_weather"
+    title: "Weather"
+    lines:
+      - speaker: "A"
+        text: "It is very hot today."
+        translation: "இன்று மிகவும் வெப்பமாக இருக்கிறது."
+        expected_response: null
+      - speaker: "B"
+        text: "Yes, it might rain later."
+        translation: "ஆம், பின்னர் மழை பெய்யலாம்."
+        expected_response: null
+      - speaker: "A"
+        text: "Did you bring an umbrella?"
+        translation: "நீங்கள் குடை கொண்டு வந்தீர்களா?"
+        expected_response: "Yes, I brought an umbrella."
+      - speaker: "B"
+        text: "Yes, I brought an umbrella."
+        translation: "ஆம், நான் ஒரு குடை கொண்டு வந்தேன்."
+        expected_response: null
+
+  - id: c_numbers_time
+    level: level_1
+    scenario: "22_numbers_time"
+    title: "Numbers and Time"
+    lines:
+      - speaker: "A"
+        text: "What time is it now?"
+        translation: "இப்போது என்ன நேரம்?"
+        expected_response: null
+      - speaker: "B"
+        text: "It is five o'clock."
+        translation: "இப்போது ஐந்து மணி."
+        expected_response: null
+      - speaker: "A"
+        text: "What time does the shop close?"
+        translation: "கடை எத்தனை மணிக்கு மூடும்?"
+        expected_response: null
+      - speaker: "B"
+        text: "It closes at nine."
+        translation: "இது ஒன்பது மணிக்கு மூடும்."
+        expected_response: null
+
+  - id: c_public_transport
+    level: level_1
+    scenario: "23_public_transport"
+    title: "Public Transport"
+    lines:
+      - speaker: "A"
+        text: "Does this bus go to the market?"
+        translation: "இந்த பேருந்து சந்தைக்குச் செல்லுமா?"
+        expected_response: null
+      - speaker: "B"
+        text: "Yes, get down at the third stop."
+        translation: "ஆம், மூன்றாவது நிறுத்தத்தில் இறங்குங்கள்."
+        expected_response: null
+      - speaker: "A"
+        text: "How much is the ticket?"
+        translation: "டிக்கெட் விலை எவ்வளவு?"
+        expected_response: null
+      - speaker: "B"
+        text: "Ten rupees, please."
+        translation: "பத்து ரூபாய், தயவுசெய்து."
+        expected_response: null
+
+  - id: c_post_office
+    level: level_1
+    scenario: "24_post_office"
+    title: "Post Office"
+    lines:
+      - speaker: "A"
+        text: "I want to send this package."
+        translation: "எனக்கு இந்த பொதியை அனுப்ப வேண்டும்."
+        expected_response: null
+      - speaker: "B"
+        text: "Where is it going?"
+        translation: "இது எங்கு செல்ல வேண்டும்?"
+        expected_response: null
+      - speaker: "A"
+        text: "It is going to Chennai."
+        translation: "இது சென்னைக்குச் செல்ல வேண்டும்."
+        expected_response: null
+      - speaker: "B"
+        text: "That will take three days."
+        translation: "அதற்கு மூன்று நாட்கள் ஆகும்."
+        expected_response: null
+
+  - id: c_pharmacy
+    level: level_1
+    scenario: "25_pharmacy"
+    title: "Pharmacy"
+    lines:
+      - speaker: "A"
+        text: "I need some medicine for a headache."
+        translation: "எனக்கு தலைவலிக்கு மருந்து வேண்டும்."
+        expected_response: null
+      - speaker: "B"
+        text: "Take one tablet after food."
+        translation: "சாப்பிட்ட பிறகு ஒரு மாத்திரை எடுத்துக் கொள்ளுங்கள்."
+        expected_response: null
+      - speaker: "A"
+        text: "How many times a day?"
+        translation: "நாளொன்றுக்கு எத்தனை முறை?"
+        expected_response: null
+      - speaker: "B"
+        text: "Twice a day, morning and night."
+        translation: "நாளொன்றுக்கு இரண்டு முறை, காலையும் இரவும்."
+        expected_response: null
+
+  - id: c_gym
+    level: level_1
+    scenario: "26_gym"
+    title: "Gym and Fitness"
+    lines:
+      - speaker: "A"
+        text: "What time does the gym open?"
+        translation: "ஜிம் எத்தனை மணிக்குத் திறக்கும்?"
+        expected_response: null
+      - speaker: "B"
+        text: "It opens at six in the morning."
+        translation: "இது காலை ஆறு மணிக்குத் திறக்கும்."
+        expected_response: null
+      - speaker: "A"
+        text: "I want to join a yoga class."
+        translation: "எனக்கு ஒரு யோகா வகுப்பில் சேர வேண்டும்."
+        expected_response: null
+      - speaker: "B"
+        text: "Sure, the class starts on Monday."
+        translation: "சரி, வகுப்பு திங்கட்கிழமை தொடங்கும்."
+        expected_response: null
+
+  - id: c_cafe
+    level: level_1
+    scenario: "27_cafe"
+    title: "Cafe"
+    lines:
+      - speaker: "A"
+        text: "One coffee, please."
+        translation: "ஒரு காபி, தயவுசெய்து."
+        expected_response: null
+      - speaker: "B"
+        text: "Hot or cold?"
+        translation: "சூடா அல்லது குளிரா?"
+        expected_response: null
+      - speaker: "A"
+        text: "Hot, please. And a little less sugar."
+        translation: "சூடாக, தயவுசெய்து. கொஞ்சம் குறைவான சர்க்கரையுடன்."
+        expected_response: null
+      - speaker: "B"
+        text: "Sure, one moment please."
+        translation: "சரி, ஒரு நிமிடம் தயவுசெய்து."
+        expected_response: null
+
+  - id: c_apartment_rental
+    level: level_2
+    scenario: "28_apartment_rental"
+    title: "Apartment Rental"
+    lines:
+      - speaker: "A"
+        text: "I am looking for a two-bedroom apartment."
+        translation: "எனக்கு இரண்டு படுக்கையறை கொண்ட வீடு தேவை."
+        expected_response: null
+      - speaker: "B"
+        text: "What is your budget?"
+        translation: "உங்கள் பட்ஜெட் என்ன?"
+        expected_response: null
+      - speaker: "A"
+        text: "Around fifteen thousand rupees a month."
+        translation: "மாதம் சுமார் பதினைந்தாயிரம் ரூபாய்."
+        expected_response: null
+      - speaker: "B"
+        text: "I have one available near the school."
+        translation: "பள்ளிக்கு அருகில் ஒன்று உள்ளது."
+        expected_response: null
+
+  - id: c_festival
+    level: level_2
+    scenario: "29_festival"
+    title: "Festival Greetings"
+    lines:
+      - speaker: "A"
+        text: "Happy Pongal! How are you celebrating?"
+        translation: "பொங்கல் நல்வாழ்த்துக்கள்! எப்படி கொண்டாடுகிறீர்கள்?"
+        expected_response: null
+      - speaker: "B"
+        text: "We are cooking together with family."
+        translation: "நாங்கள் குடும்பத்துடன் சேர்ந்து சமைக்கிறோம்."
+        expected_response: null
+      - speaker: "A"
+        text: "That sounds wonderful. Wishing you a good harvest."
+        translation: "அது அருமையாக இருக்கிறது. நல்ல அறுவடை கிடைக்க வாழ்த்துகிறேன்."
+        expected_response: null
+
+  - id: c_tech_support
+    level: level_2
+    scenario: "30_tech_support"
+    title: "Tech Support"
+    lines:
+      - speaker: "A"
+        text: "The internet is not working."
+        translation: "இணையம் வேலை செய்யவில்லை."
+        expected_response: null
+      - speaker: "B"
+        text: "Please restart the router."
+        translation: "தயவுசெய்து ரூட்டரை மறுதொடக்கம் செய்யுங்கள்."
+        expected_response: null
+      - speaker: "A"
+        text: "I restarted it, but it is still not working."
+        translation: "நான் அதை மறுதொடக்கம் செய்தேன், ஆனாலும் வேலை செய்யவில்லை."
+        expected_response: null
+      - speaker: "B"
+        text: "Let me send a technician to your home."
+        translation: "நான் உங்கள் வீட்டிற்கு ஒரு தொழில்நுட்ப நிபுணரை அனுப்புகிறேன்."
+        expected_response: null

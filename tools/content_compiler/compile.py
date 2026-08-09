@@ -96,7 +96,15 @@ def normalize(text: str) -> str:
     return text.lower()
 
 
-class DuplicateError(Exception):
+class ContentValidationError(Exception):
+    """Base for content quality gate failures (spec 3.2)."""
+
+
+class DuplicateError(ContentValidationError):
+    pass
+
+
+class MissingFieldError(ContentValidationError):
     pass
 
 
@@ -142,6 +150,7 @@ class ContentCompiler:
 
         conversations_data = self.load_yaml("conversations.yaml").get("conversations", [])
         conversations_data += self.load_yaml("conversations_extra.yaml").get("conversations", [])
+        conversations_data += self.load_yaml("conversations_new.yaml").get("conversations", [])
         self._compile_conversations(cur, conversations_data)
 
         self._generate_quiz_questions(cur)
@@ -260,14 +269,32 @@ class ContentCompiler:
                 self.stats["sentence_translations"] += 1
 
     def _compile_conversations(self, cur, conversations: list):
+        seen_scenarios = set()
         for c in conversations:
+            scenario = c.get("scenario")
+            title = c.get("title")
+            lines = c.get("lines", [])
+            if not scenario or not title:
+                raise MissingFieldError(
+                    f"Conversation missing required 'scenario' or 'title': {c.get('id', c)}"
+                )
+            if scenario in seen_scenarios:
+                raise DuplicateError(f"Duplicate conversation scenario detected: {scenario!r}")
+            seen_scenarios.add(scenario)
+            if not lines:
+                raise MissingFieldError(f"Conversation {scenario!r} has no lines")
+
             cur.execute(
                 "INSERT INTO conversations (level, scenario, title) VALUES (?,?,?)",
-                (c.get("level", "level_1"), c["scenario"], c["title"]),
+                (c.get("level", "level_1"), scenario, title),
             )
             conversation_id = cur.lastrowid
             self.stats["conversations"] += 1
-            for line in c.get("lines", []):
+            for line in lines:
+                if not line.get("speaker") or not line.get("text") or not line.get("translation"):
+                    raise MissingFieldError(
+                        f"Conversation {scenario!r} has a line missing speaker/text/translation: {line}"
+                    )
                 cur.execute(
                     "INSERT INTO conversation_lines (conversation_id, speaker, text, "
                     "translation, expected_response) VALUES (?,?,?,?,?)",
@@ -356,7 +383,7 @@ def main():
     compiler = ContentCompiler(Path(args.source), Path(args.out))
     try:
         stats = compiler.compile()
-    except DuplicateError as e:
+    except ContentValidationError as e:
         print(f"CONTENT QUALITY GATE FAILED: {e}", file=sys.stderr)
         sys.exit(1)
 
