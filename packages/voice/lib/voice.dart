@@ -11,5 +11,8 @@ export 'src/speech_to_text_service.dart';
 export 'src/whisper_fallback_service.dart';
 export 'src/pronunciation_analyzer.dart';
 export 'src/audio_player_service.dart';
+export 'src/sherpa_tts_outcome.dart';
+export 'src/piper_tts_service.dart';
+export 'src/kokoro_tts_service.dart';
 export 'src/voice_service.dart';
 export 'src/voice_providers.dart';

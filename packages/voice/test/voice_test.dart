@@ -52,4 +52,32 @@ void main() {
       expect(result, AudioPlaybackResult.error);
     });
   });
+
+  group('PiperTtsService (THE-41)', () {
+    test('synthesize() on empty text is a no-op (error) without touching the model', () async {
+      final service = PiperTtsService();
+      final outcome = await service.synthesize('');
+      expect(outcome.result, SherpaTtsResult.error);
+    });
+
+    test('synthesize() with no voice installed resolves to modelNotInstalled rather than throwing', () async {
+      final service = PiperTtsService();
+      final outcome = await service.synthesize('hello');
+      expect(outcome.result, SherpaTtsResult.modelNotInstalled);
+    });
+  });
+
+  group('KokoroTtsService (THE-42)', () {
+    test('synthesize() on empty text is a no-op (error) without touching the model', () async {
+      final service = KokoroTtsService();
+      final outcome = await service.synthesize('');
+      expect(outcome.result, SherpaTtsResult.error);
+    });
+
+    test('synthesize() with no voice installed resolves to modelNotInstalled rather than throwing', () async {
+      final service = KokoroTtsService();
+      final outcome = await service.synthesize('hello');
+      expect(outcome.result, SherpaTtsResult.modelNotInstalled);
+    });
+  });
 }

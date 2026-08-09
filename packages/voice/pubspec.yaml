@@ -19,6 +19,7 @@ dependencies:
   universal_io: ^2.2.2
   just_audio: ^0.10.6
   just_audio_windows: ^0.2.3
+  sherpa_onnx: ^1.13.4
   core:
     path: ../core
 
@@ -26,6 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  args: ^2.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
