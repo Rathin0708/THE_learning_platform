@@ -21,6 +21,10 @@
 *.iml
 .vscode/
 
+# Python (tools/content_compiler/*.py)
+**/__pycache__/
+*.pyc
+
 # OS
 .DS_Store
 Thumbs.db

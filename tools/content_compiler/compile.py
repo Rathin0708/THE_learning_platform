@@ -210,6 +210,7 @@ class ContentCompiler:
 
         sentences_data = self.load_yaml("sentences.yaml").get("sentences", [])
         sentences_data += self.load_yaml("sentences_tatoeba.yaml").get("sentences", [])
+        sentences_data += self.load_yaml("sentences_wikimatrix.yaml").get("sentences", [])
         self._compile_sentences(cur, sentences_data)
 
         conversations_data = self.load_yaml("conversations.yaml").get("conversations", [])
@@ -418,15 +419,32 @@ EXPORT_TABLES = [
     "conversations", "conversation_lines", "quiz_questions",
 ]
 
+# WebContentSeeder (packages/core) parses this JSON and inserts every row
+# via sqflite on the browser's single main thread — there's no equivalent
+# to desktop/mobile's "just copy the .db file bytes" shortcut (THE-58's
+# doc comment explains why). At THE-66's 100K+ scale that's 60-90+
+# seconds of a genuinely frozen UI on first launch (measured directly,
+# not estimated), which is exactly the "no regression in startup time"
+# THE-66's own Definition of Done rules out. Desktop/mobile get the full
+# catalogue via content.db; web gets a capped sentence set instead — same
+# platform-tiered-content idea already used for local AI models (spec
+# 8.6). Sentences are inserted lowest-id-first, i.e. hand-authored then
+# Tatoeba then the bulk Wikipedia-mined set (see ContentCompiler.compile's
+# load order), so the cap naturally keeps the more conversational,
+# better-fit-for-a-learner content over the encyclopedic bulk import.
+WEB_SENTENCE_CAP = 15000
 
-def export_json(db_path: Path, json_path: Path):
+
+def export_json(db_path: Path, json_path: Path, sentence_cap: int | None = WEB_SENTENCE_CAP):
     """
     Web (THE-58) has no API to import an existing SQLite file into
     IndexedDB-backed storage (sqflite_common_ffi_web creates only empty
     databases). This JSON export lets the Dart-side web seeder recreate
     the same rows via plain INSERTs against an empty web database on
     first launch — same source of truth, a second output format solely
-    because of that platform constraint.
+    because of that platform constraint. [sentence_cap] bounds
+    sentences/sentence_translations only (see WEB_SENTENCE_CAP) — every
+    other table is small enough not to matter for seeding time.
     """
     import json
 
@@ -436,7 +454,16 @@ def export_json(db_path: Path, json_path: Path):
 
     export = {}
     for table in EXPORT_TABLES:
-        cur.execute(f"SELECT * FROM {table}")
+        if table == "sentences" and sentence_cap is not None:
+            cur.execute("SELECT * FROM sentences ORDER BY id LIMIT ?", (sentence_cap,))
+        elif table == "sentence_translations" and sentence_cap is not None:
+            cur.execute(
+                "SELECT * FROM sentence_translations WHERE sentence_id IN "
+                "(SELECT id FROM sentences ORDER BY id LIMIT ?)",
+                (sentence_cap,),
+            )
+        else:
+            cur.execute(f"SELECT * FROM {table}")
         export[table] = [dict(row) for row in cur.fetchall()]
     conn.close()
 
