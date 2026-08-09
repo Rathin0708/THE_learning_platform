@@ -85,6 +85,19 @@ class SettingsScreen extends ConsumerWidget {
                 onTap: ready ? () => context.push(AppRoutes.localTutor) : null,
               );
             }),
+            Consumer(builder: (context, ref, _) {
+              final manager = ref.watch(localAiModelManagerProvider);
+              return ListTile(
+                title: const Text('Manage local AI models'),
+                subtitle: Text(
+                  manager != null
+                      ? 'Download, switch, or remove local AI models.'
+                      : 'Not offered on this device — kept desktop-only.',
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: manager != null ? () => context.push(AppRoutes.modelManagement) : null,
+              );
+            }),
             if (!kIsWeb) const _ContentUpdateSection(),
           ],
         ),

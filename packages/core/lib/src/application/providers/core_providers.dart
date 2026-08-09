@@ -11,6 +11,7 @@ import '../../domain/repositories/progress_repository.dart';
 import '../../domain/ai/local_ai_routing_policy.dart';
 import '../../domain/ai/local_llm_engine.dart';
 import '../../domain/ai/grammar_correction_service.dart';
+import '../../domain/ai/local_ai_model_manager.dart';
 import '../conversation/conversation_response_matcher.dart';
 import '../srs/spaced_repetition_engine.dart';
 
@@ -53,6 +54,11 @@ final grammarCorrectionServiceProvider = Provider<GrammarCorrectionService?>((re
   if (engine == null || !engine.isReady) return null;
   return GrammarCorrectionService(engine);
 });
+
+/// Local-AI model catalog/download/select/delete (THE-61/62). Null by
+/// default (same reasoning as [localLlmEngineProvider]) — apps/mobile's
+/// main.dart overrides this with a real, desktop-only implementation.
+final localAiModelManagerProvider = Provider<LocalAiModelManager?>((ref) => null);
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 

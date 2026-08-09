@@ -24,11 +24,16 @@ Future<void> main() async {
   // unconditionally (see packages/local_ai's conditional export).
   final localLlmEngine = await tryLoadDesktopLocalLlmEngine();
 
+  // Model catalog/download/select/delete (THE-61/62) — same desktop-only,
+  // web-safe factory pattern as tryLoadDesktopLocalLlmEngine above.
+  final localAiModelManager = tryCreateDesktopModelManager();
+
   runApp(
     ProviderScope(
       overrides: [
         appDatabaseProvider.overrideWithValue(database),
         if (localLlmEngine != null) localLlmEngineProvider.overrideWithValue(localLlmEngine),
+        if (localAiModelManager != null) localAiModelManagerProvider.overrideWithValue(localAiModelManager),
       ],
       child: const LanguageLearningApp(),
     ),

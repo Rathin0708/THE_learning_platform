@@ -17,3 +17,5 @@ library;
 
 export 'src/local_llm_engine_stub.dart' if (dart.library.ffi) 'src/local_llm_engine_io.dart';
 export 'src/engine_factory_stub.dart' if (dart.library.ffi) 'src/engine_factory_io.dart';
+export 'src/local_ai_model_manager_stub.dart' if (dart.library.ffi) 'src/local_ai_model_manager_io.dart';
+export 'src/model_manager_factory_stub.dart' if (dart.library.ffi) 'src/model_manager_factory_io.dart';

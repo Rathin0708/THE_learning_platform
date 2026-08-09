@@ -20,4 +20,5 @@ export 'src/application/conversation/conversation_response_matcher.dart';
 export 'src/domain/ai/local_ai_routing_policy.dart';
 export 'src/domain/ai/local_llm_engine.dart';
 export 'src/domain/ai/grammar_correction_service.dart';
+export 'src/domain/ai/local_ai_model_manager.dart';
 export 'src/application/providers/core_providers.dart';
