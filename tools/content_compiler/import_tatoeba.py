@@ -10,7 +10,10 @@ snapshot at manythings.org/anki — the direct source has ~6,900 real
 Hindi-English pairs and ~300 real Tamil-English pairs (vs. manythings'
 ~3,100 and ~216), all still real, community-verified Tatoeba sentences
 and links; nothing here is generated or guessed. Deduplicates against
-the existing hand-authored sentences.yaml by normalized English text.
+the existing hand-authored sentences.yaml by normalized English text,
+and drops sentences matching MATURE_CONTENT_WORDS (Tatoeba is a
+general-purpose community corpus, not curated for a language-learning
+app — see that constant's comment for what's filtered and why).
 """
 import re
 import unicodedata
@@ -121,6 +124,26 @@ def classify_category(english: str) -> str:
     return "general"
 
 
+# Tatoeba is a general-purpose community corpus (movie quotes, casual
+# speech), not curated for a language-learning app — profanity, sexual
+# references, and violent-crime themes show up in it. Deliberately
+# excludes softer words like "die"/"death"/"hell" that appear constantly
+# in completely benign sentences ("the plants died", "after death there
+# is nothing") — filtering those wholesale would cut far more harmless
+# content than it protects. Word-boundary matched so it doesn't false-hit
+# substrings (e.g. "hello" containing "hell").
+MATURE_CONTENT_WORDS = [
+    "bastard", "bitch", "fuck", "shit", "damn", "asshole", "slut", "whore",
+    "crap", "piss", "sex", "drunk", "naked", "kill", "murder", "suicide",
+    "rape", "drug",
+]
+MATURE_CONTENT_PATTERN = re.compile(r"\b(" + "|".join(MATURE_CONTENT_WORDS) + r")\w*\b", re.IGNORECASE)
+
+
+def is_mature_content(english: str) -> bool:
+    return bool(MATURE_CONTENT_PATTERN.search(english))
+
+
 def main():
     hin_sentences = load_sentences(TATOEBA_DIR / "hin_sentences.tsv")
     tam_sentences = load_sentences(TATOEBA_DIR / "tam_sentences.tsv")
@@ -140,12 +163,16 @@ def main():
     new_keys = sorted(all_keys - existing_keys)
 
     entries = []
+    mature_filtered = 0
     for idx, key in enumerate(new_keys):
         hin = hin_pairs.get(key)
         tam = tam_pairs.get(key)
         english = (hin or tam)[0]
         # Skip bare punctuation/interjection-only lines with no letters.
         if not re.search(r"[a-zA-Z]", english):
+            continue
+        if is_mature_content(english):
+            mature_filtered += 1
             continue
 
         entry = {
@@ -179,6 +206,7 @@ def main():
     print(f"hin-eng pairs available: {len(hin_pairs)}")
     print(f"tam-eng pairs available: {len(tam_pairs)}")
     print(f"Already in hand-authored sentences.yaml (skipped): {len(all_keys & existing_keys)}")
+    print(f"Filtered for mature content (profanity/sexual/violent-crime themes): {mature_filtered}")
     print(f"New sentences written: {len(entries)}")
     print(f"  trilingual (en+ta+hi): {both}")
     print(f"  english+hindi only: {only_hin}")

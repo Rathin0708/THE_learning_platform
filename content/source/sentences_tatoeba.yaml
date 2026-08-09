@@ -275,11 +275,6 @@ sentences:
   category: general
   english: A drowning man will clutch at a straw.
   hindi: डूबते को तिनके का सहारा।
-- id: tatoeba_54
-  level: level_1
-  category: general
-  english: A drunkard raped Laila.
-  hindi: लैला पर एक शराबी ने यौन शोषण किया।
 - id: tatoeba_55
   level: level_2
   category: general
@@ -535,11 +530,6 @@ sentences:
   category: general
   english: A world map shows all the countries.
   hindi: दुनिया का नक्शा सभी देश दिखाता है।
-- id: tatoeba_106
-  level: level_2
-  category: general
-  english: About four thousand soldiers were killed.
-  hindi: लगभग चार हज़ार सैनिक मारे गये।
 - id: tatoeba_107
   level: level_2
   category: general
@@ -645,11 +635,6 @@ sentences:
   category: travel
   english: After Saturday comes Sunday.
   hindi: शनिवार के बाद रविवार आता है।
-- id: tatoeba_128
-  level: level_3
-  category: general
-  english: After sex, I fell asleep with my head on her belly.
-  hindi: सेक्स के बाद मैं उसके पेट पर सिर रख कर सो गया।
 - id: tatoeba_129
   level: level_2
   category: work
@@ -1300,11 +1285,6 @@ sentences:
   category: general
   english: Are they all nuts?
   hindi: वे सब पागल हैं क्या?
-- id: tatoeba_259
-  level: level_2
-  category: travel
-  english: Are they going to rape us?
-  hindi: क्या वे हम पर बलात्कार करने वाले हैं?
 - id: tatoeba_260
   level: level_1
   category: general
@@ -1685,16 +1665,6 @@ sentences:
   category: general
   english: Ask.
   hindi: पूछ।
-- id: tatoeba_336
-  level: level_1
-  category: general
-  english: Asshole!
-  hindi: चूतिये!
-- id: tatoeba_337
-  level: level_1
-  category: general
-  english: Asshole.
-  hindi: चूतिया।
 - id: tatoeba_338
   level: level_2
   category: general
@@ -1881,12 +1851,6 @@ sentences:
   category: general
   english: Barcelona is the capital city of Catalonia and the second largest city in Spain.
   hindi: बार्सेलोना केटलोनिआ की राजधानी और स्पेन का दूसरा सबसे बड़ा शहर है।
-- id: tatoeba_375
-  level: level_1
-  category: general
-  english: Bastard!
-  tamil: மயிர்!
-  hindi: हरामज़ादे!
 - id: tatoeba_376
   level: level_1
   category: family
@@ -2188,11 +2152,6 @@ sentences:
   category: general
   english: Both Tom and Mary are in their thirties.
   hindi: टॉम और मैरी दोनों लगभग तीस साल के हैं।
-- id: tatoeba_436
-  level: level_1
-  category: general
-  english: Both were naked.
-  hindi: दोनों नंगे थे।
 - id: tatoeba_437
   level: level_1
   category: general
@@ -2755,11 +2714,6 @@ sentences:
   category: general
   english: Cats chase mice in the garden.
   hindi: बिल्लियाँ बगीचे में चूहों का पीछा करतीं हैं।
-- id: tatoeba_549
-  level: level_1
-  category: general
-  english: Cats kill rats.
-  hindi: बिल्ली चूहें मारती हैं।
 - id: tatoeba_550
   level: level_2
   category: general
@@ -3338,11 +3292,6 @@ sentences:
   category: general
   english: Cows are sacred to many people in India.
   hindi: भारत में कई लोग गाय को पूज्य मानते हैं।
-- id: tatoeba_665
-  level: level_2
-  category: general
-  english: Crap! I fell for his trap!
-  hindi: अरे! मैं उसके चंगुल में फंस गया!
 - id: tatoeba_666
   level: level_1
   category: general
@@ -3388,11 +3337,6 @@ sentences:
   category: general
   english: Cut the bullshit!
   hindi: बकवास बंद कर!
-- id: tatoeba_675
-  level: level_1
-  category: general
-  english: Cut the crap!
-  hindi: बकवास बंद कर!
 - id: tatoeba_676
   level: level_1
   category: general
@@ -3423,21 +3367,6 @@ sentences:
   category: general
   english: Damascus is located in Syria.
   hindi: दमिश्क सीरिया में स्थित है।
-- id: tatoeba_682
-  level: level_1
-  category: general
-  english: Damn it!
-  hindi: लानत है!
-- id: tatoeba_683
-  level: level_1
-  category: general
-  english: Damn.
-  hindi: इसकी तो.
-- id: tatoeba_684
-  level: level_2
-  category: general
-  english: Dan and Linda began to have sex.
-  hindi: डॅन और लिंडा सेक्स करने लगे।
 - id: tatoeba_685
   level: level_2
   category: time
@@ -3453,11 +3382,6 @@ sentences:
   category: general
   english: Dance.
   hindi: नाचो।
-- id: tatoeba_688
-  level: level_1
-  category: general
-  english: Dania was being raped.
-  hindi: दानिया पर बलात्कार हो रहा था।
 - id: tatoeba_689
   level: level_1
   category: general
@@ -3580,11 +3504,6 @@ sentences:
   category: general
   english: Did they do something to him?
   hindi: क्या उन्होंने उसको कुछ कर दिया?
-- id: tatoeba_713
-  level: level_1
-  category: general
-  english: Did they rape you?
-  hindi: क्या उन्होंने आप पर बलात्कार किया?
 - id: tatoeba_714
   level: level_1
   category: work
@@ -3680,11 +3599,6 @@ sentences:
   category: general
   english: Did you miss me?
   hindi: मेरी याद आई क्या?
-- id: tatoeba_733
-  level: level_1
-  category: general
-  english: Did you murder Tom?
-  hindi: क्या तुम ने टॉम का खून किया?
 - id: tatoeba_734
   level: level_2
   category: work
@@ -4452,11 +4366,6 @@ sentences:
   category: travel
   english: Do you want to go to Germany with me?
   hindi: क्या तुम मेरे साथ जर्मनी जाना चाहते हो?
-- id: tatoeba_887
-  level: level_2
-  category: time
-  english: Do you want to have sex with me tonight?
-  hindi: क्या तुम आज रात मेरे साथ सेक्स करना चाहते हो?
 - id: tatoeba_888
   level: level_2
   category: general
@@ -4748,11 +4657,6 @@ sentences:
   category: travel
   english: Don't come here! Run!
   tamil: இங்கே வராதே! ஓடு!
-- id: tatoeba_946
-  level: level_1
-  category: travel
-  english: Don't come in! I'm naked.
-  hindi: अंदर मत आओ! मैं नंगा हूँ।
 - id: tatoeba_947
   level: level_1
   category: general
@@ -4878,11 +4782,6 @@ sentences:
   category: general
   english: Don't insult me in company.
   hindi: मुझे लोगों के सामने शर्मिंदा मत करो।
-- id: tatoeba_972
-  level: level_1
-  category: general
-  english: Don't kill the mouse!
-  tamil: எலியைக் கொல்லாதே!
 - id: tatoeba_973
   level: level_1
   category: general
@@ -6123,11 +6022,6 @@ sentences:
   category: general
   english: Few students use pencils these days.
   hindi: आजकल बहुत कम विद्यार्थी पेनसिल इस्तेमाल करतें हैं।
-- id: tatoeba_1220
-  level: level_2
-  category: general
-  english: Fifty-two per cent of British women prefer chocolate to sex.
-  hindi: बावन प्रतिशत ब्रिटिश औरतें सेक्स से ज़्यादा चॉकलेट पसंद करती हैं।
 - id: tatoeba_1221
   level: level_1
   category: general
@@ -6468,26 +6362,6 @@ sentences:
   english: Fry.
   tamil: வறு.
   hindi: तलना.
-- id: tatoeba_1288
-  level: level_1
-  category: general
-  english: Fuck him.
-  hindi: उसे चोद।
-- id: tatoeba_1289
-  level: level_1
-  category: general
-  english: Fuck me.
-  hindi: चोद मुझे।
-- id: tatoeba_1290
-  level: level_1
-  category: general
-  english: Fuck!
-  hindi: माँ चुद गई!
-- id: tatoeba_1291
-  level: level_1
-  category: general
-  english: Fucking whore.
-  hindi: रंडी साली।
 - id: tatoeba_1292
   level: level_1
   category: general
@@ -6997,11 +6871,6 @@ sentences:
   category: general
   english: Growth is important.
   tamil: வளர்ச்சி முக்கியம்.
-- id: tatoeba_1393
-  level: level_2
-  category: general
-  english: Guns don't kill people. People kill people.
-  hindi: बंदूकें लोगों को नहीं मारती। लोग लोगों को मारते हैं।
 - id: tatoeba_1394
   level: level_1
   category: general
@@ -7318,11 +7187,6 @@ sentences:
   category: general
   english: Having seen him before, I recognized him.
   hindi: मैंने उसे पहले देखा हुआ था, इसलिए मैंने उसे पहचान लिया।
-- id: tatoeba_1457
-  level: level_1
-  category: general
-  english: Having unprotected sex is dangerous.
-  hindi: असुरक्षित सेक्स खतरनाक होता है।
 - id: tatoeba_1458
   level: level_1
   category: family
@@ -9042,11 +8906,6 @@ sentences:
   category: time
   english: He kept us waiting for a long time.
   hindi: उसने हमसे बहुत देर तक इंतेज़ार करवाया।
-- id: tatoeba_1801
-  level: level_1
-  category: general
-  english: He killed that man.
-  hindi: उसने उस आदमी को मार डाला।
 - id: tatoeba_1802
   level: level_2
   category: general
@@ -10103,11 +9962,6 @@ sentences:
   category: work
   english: He was absent from school on account of illness.
   hindi: वह बीमारी की वजह से स्कूल नहीं आया।
-- id: tatoeba_2013
-  level: level_1
-  category: general
-  english: He was accused of murder.
-  hindi: उसपर कत्ल का इलज़ाम लगाया गया।
 - id: tatoeba_2014
   level: level_1
   category: general
@@ -10193,11 +10047,6 @@ sentences:
   category: general
   english: He was hard up.
   hindi: उसको पैसों की कमी थी।
-- id: tatoeba_2031
-  level: level_2
-  category: general
-  english: He was killed by a single bullet.
-  hindi: उसे केवल एक गोली से मारा गया था।
 - id: tatoeba_2032
   level: level_2
   category: general
@@ -10413,11 +10262,6 @@ sentences:
   category: travel
   english: He will come home in a few days.
   hindi: वह कुछ दिनों में ग्रह लौट आयेगा.
-- id: tatoeba_2075
-  level: level_2
-  category: general
-  english: He will commit suicide if he can't see his son.
-  hindi: वह अपने बेटे को नहीं देख पाया तो वह आत्महत्या कर लेगा।
 - id: tatoeba_2076
   level: level_2
   category: general
@@ -10558,11 +10402,6 @@ sentences:
   category: general
   english: He's a famous physicist not only in Japan, but throughout the world.
   hindi: वह न केवल जापान में बल्कि पूरे विश्व में प्रसिद्व भौतिक शास्त्री है।
-- id: tatoeba_2104
-  level: level_2
-  category: general
-  english: He's a fan of Sex and the City.
-  hindi: वह "सेक्स एंड द सिटी" का शौकीन है।
 - id: tatoeba_2105
   level: level_1
   category: family
@@ -11265,11 +11104,6 @@ sentences:
   category: general
   english: His health has enabled him to succeed in life.
   hindi: उसके स्वास्थ्य ने उसको ज़िन्दगी में कामयाब होने दिया है।
-- id: tatoeba_2245
-  level: level_1
-  category: family
-  english: His little sister is fuckable.
-  hindi: उसकी छोटी बहन चोदने लायक है।
 - id: tatoeba_2246
   level: level_2
   category: general
@@ -11480,11 +11314,6 @@ sentences:
   category: general
   english: Hold the baby gently.
   hindi: बच्चे को धीरे से पकड़ो।
-- id: tatoeba_2288
-  level: level_2
-  category: general
-  english: Hold your tongue, or you'll be killed.
-  hindi: अपनी ज़बान बंद रखो, नहीं तो मारे जाओगे।
 - id: tatoeba_2289
   level: level_1
   category: general
@@ -12045,11 +11874,6 @@ sentences:
   category: general
   english: How many people died?
   hindi: कितने लोग मरें?
-- id: tatoeba_2401
-  level: level_3
-  category: general
-  english: How many people have you had sex with in the last year?
-  hindi: गये साल में तुम ने कितने लोगों के साथ सेक्स किया है?
 - id: tatoeba_2402
   level: level_2
   category: general
@@ -12266,11 +12090,6 @@ sentences:
   category: general
   english: Humor is the affectionate communication of insight.
   hindi: अंतर्दृष्टि का स्नेहमय संवाद है हास्य।
-- id: tatoeba_2445
-  level: level_1
-  category: general
-  english: Hundreds have been killed.
-  hindi: सैंकड़ों मारे गए हैं।
 - id: tatoeba_2446
   level: level_1
   category: food
@@ -13855,11 +13674,6 @@ sentences:
   category: general
   english: I did it the way he told me to.
   hindi: उसने जैसे बताया था मैंने वैसे किया।
-- id: tatoeba_2762
-  level: level_2
-  category: general
-  english: I did not have sex with him.
-  hindi: मैंने उसके साथ सेक्स नहीं किया।
 - id: tatoeba_2763
   level: level_3
   category: travel
@@ -14030,11 +13844,6 @@ sentences:
   category: general
   english: I didn't tell them.
   tamil: நான் அவர்களிடம் சொல்லவில்லை.
-- id: tatoeba_2797
-  level: level_2
-  category: general
-  english: I didn't try to kill anybody.
-  hindi: मैंने किसी को मारने की कोशिश नहीं की।
 - id: tatoeba_2798
   level: level_2
   category: general
@@ -15056,11 +14865,6 @@ sentences:
   category: general
   english: I found this test difficult.
   hindi: मैंने इस परीक्षण को मुश्किल पाया।
-- id: tatoeba_3002
-  level: level_1
-  category: family
-  english: I fucked lots of friends.
-  hindi: मैंने कई दोस्तों को चोदा।
 - id: tatoeba_3003
   level: level_2
   category: general
@@ -15301,11 +15105,6 @@ sentences:
   category: general
   english: I had nothing to do with the group.
   hindi: मेरा उस ग्रुप के साथ कोई संबंध नहीं था।
-- id: tatoeba_3051
-  level: level_2
-  category: general
-  english: I had sex with a Soviet-American woman.
-  hindi: मैं ने एक सोवियत-अमरीकी औरत के साथ सेक्स किया।
 - id: tatoeba_3052
   level: level_2
   category: time
@@ -16968,11 +16767,6 @@ sentences:
   category: travel
   english: I lost my hat on the bus.
   hindi: मैं बस में अपनी टोपी भूल आया।
-- id: tatoeba_3384
-  level: level_1
-  category: general
-  english: I love anal sex.
-  hindi: मुझे गुदा मैथुन बहुत पसंद है।
 - id: tatoeba_3385
   level: level_2
   category: general
@@ -18490,11 +18284,6 @@ sentences:
   category: food
   english: I want to drink tea.
   hindi: मैं चाय पीना चाहता हूँ।
-- id: tatoeba_3688
-  level: level_1
-  category: general
-  english: I want to fuck you.
-  hindi: मुझे तुम्हें चोदना है।
 - id: tatoeba_3689
   level: level_2
   category: work
@@ -18545,21 +18334,6 @@ sentences:
   category: food
   english: I want to have a cup of coffee.
   hindi: मुझे एक कप कॉफ़ी चाहिए।
-- id: tatoeba_3699
-  level: level_2
-  category: general
-  english: I want to have anal sex with you.
-  hindi: मैं तुम्हारे साथ गुदा मैथुन करना चाहता हूँ।
-- id: tatoeba_3700
-  level: level_2
-  category: general
-  english: I want to have sex with her.
-  hindi: मैं उसके साथ सेक्स करना चाहता हूँ।
-- id: tatoeba_3701
-  level: level_2
-  category: general
-  english: I want to have sex with him.
-  hindi: मैं उसके साथ सेक्स करना चाहता हूँ।
 - id: tatoeba_3702
   level: level_2
   category: general
@@ -19005,11 +18779,6 @@ sentences:
   category: general
   english: I was lost in Sir Anthony's wonderful story.
   hindi: सर एंथनी की मज़ेदार कहानी मे मैं डूब गया।
-- id: tatoeba_3791
-  level: level_1
-  category: general
-  english: I was naked.
-  hindi: मैं नंगा था।
 - id: tatoeba_3792
   level: level_1
   category: food
@@ -19030,11 +18799,6 @@ sentences:
   category: general
   english: I was poor.
   hindi: मैं ग़रीब था।
-- id: tatoeba_3796
-  level: level_1
-  category: general
-  english: I was raped.
-  hindi: मुझ पर बलात्कार हुआ।
 - id: tatoeba_3797
   level: level_2
   category: work
@@ -20301,11 +20065,6 @@ sentences:
   category: general
   english: I'm completely deaf.
   hindi: मैं पूरी तरह से बहरा हूँ।
-- id: tatoeba_4050
-  level: level_1
-  category: general
-  english: I'm completely naked.
-  hindi: मैं पूरी तरह से नंगा हूँ।
 - id: tatoeba_4051
   level: level_1
   category: general
@@ -20386,11 +20145,6 @@ sentences:
   category: general
   english: I'm from Syria.
   hindi: मैं सीरिया से हूँ।
-- id: tatoeba_4067
-  level: level_1
-  category: general
-  english: I'm fucking.
-  hindi: मैं चोद रहा हूँ।
 - id: tatoeba_4068
   level: level_1
   category: general
@@ -20556,11 +20310,6 @@ sentences:
   category: general
   english: I'm happy right now.
   hindi: मैं इस वक़्त खुश हूँ।
-- id: tatoeba_4101
-  level: level_1
-  category: general
-  english: I'm having sex with you.
-  hindi: मैं तुम्हारे साथ सेक्स कर रहा हूँ।
 - id: tatoeba_4102
   level: level_1
   category: general
@@ -20706,11 +20455,6 @@ sentences:
   category: general
   english: I'm more beautiful than you.
   hindi: मैं तुमसे ज़्यादा खूबसूरत हूँ।
-- id: tatoeba_4131
-  level: level_1
-  category: general
-  english: I'm naked.
-  hindi: मैं नंगा हूँ।
 - id: tatoeba_4132
   level: level_2
   category: general
@@ -21226,11 +20970,6 @@ sentences:
   category: general
   english: I'm taking you with me.
   hindi: मैं तुम्हें मेरे साथ ले जा रहा हूँ।
-- id: tatoeba_4235
-  level: level_1
-  category: general
-  english: I'm talking about sex.
-  hindi: मैं सेक्स की बात कर रहा हूँ।
 - id: tatoeba_4236
   level: level_1
   category: general
@@ -21501,11 +21240,6 @@ sentences:
   category: general
   english: I've done the wrong thing.
   hindi: मैंने गलत चीज़ की है।
-- id: tatoeba_4290
-  level: level_2
-  category: food
-  english: I've drunk my cup of tea.
-  hindi: मैंने अपनी एक कप चाय पि ली है।
 - id: tatoeba_4291
   level: level_1
   category: travel
@@ -21792,11 +21526,6 @@ sentences:
   category: time
   english: If it snows tomorrow, I'll build a snowman.
   hindi: अगर कल बर्फ़ गिरी तो मैं स्नोमैन बनाऊंगा।
-- id: tatoeba_4348
-  level: level_3
-  category: general
-  english: If my boy had not been killed in the traffic accident, he would be a college student now.
-  hindi: अगर मेरा बेटा ट्रेफ़िक हादसे में नहीं मारा गया होता, तो वह अभी कॉलेज जा रहा होता।
 - id: tatoeba_4349
   level: level_2
   category: time
@@ -21972,11 +21701,6 @@ sentences:
   category: travel
   english: If you love somebody, let them go, for if they return, they were always yours. And if they don't, they never were.
   hindi: जिनसे प्रेम करते हैं, उन्हें जाने दें, वे यदि लौट आते हैं तो वे सदा के लिए आपके हैं। और अगर नहीं लौटते हैं तो वे कभी आपके थे ही नहीं।
-- id: tatoeba_4384
-  level: level_3
-  category: general
-  english: If you must kill, kill an elephant and if you must rob, rob a treasury.
-  hindi: मारें तो हाथी और लूटें तो भंडार।
 - id: tatoeba_4385
   level: level_2
   category: general
@@ -22944,11 +22668,6 @@ sentences:
   category: general
   english: It could take weeks.
   hindi: कई हफ़्ते लग सकते हैं।
-- id: tatoeba_4578
-  level: level_1
-  category: general
-  english: It could've killed Tom.
-  hindi: यह टॉम को मार सकता था।
 - id: tatoeba_4579
   level: level_1
   category: general
@@ -24389,11 +24108,6 @@ sentences:
   category: general
   english: It's more difficult than you think.
   hindi: जितना तुम सोच रहे हो उतना आसान नहीं है।
-- id: tatoeba_4867
-  level: level_1
-  category: general
-  english: It's murder.
-  hindi: ख़ून है।
 - id: tatoeba_4868
   level: level_1
   category: general
@@ -24735,11 +24449,6 @@ sentences:
   category: general
   english: It's under the table.
   hindi: मेज़ के नीचे है।
-- id: tatoeba_4936
-  level: level_3
-  category: general
-  english: It's up to me whether I kill you or let you live!
-  hindi: तुम्हें जीने दूँ या मरने दूँ, यह मेरे ऊपर है।
 - id: tatoeba_4937
   level: level_2
   category: general
@@ -25356,16 +25065,6 @@ sentences:
   category: family
   english: Kiev is the mother of Russian cities.
   hindi: कीव रूसी शहरों की माँ है।
-- id: tatoeba_5060
-  level: level_2
-  category: general
-  english: Kill two birds with one stone.
-  hindi: एक तीर से दो शिकार।
-- id: tatoeba_5061
-  level: level_1
-  category: general
-  english: Kill!
-  hindi: मारो!
 - id: tatoeba_5062
   level: level_2
   category: general
@@ -25491,11 +25190,6 @@ sentences:
   category: general
   english: Lava is dangerous.
   hindi: लावा खतरनाक होता है।
-- id: tatoeba_5087
-  level: level_1
-  category: general
-  english: Layla accused Sami of rape.
-  hindi: लैला ने सामी पर बलात्कार का आरोप किया।
 - id: tatoeba_5088
   level: level_1
   category: general
@@ -25511,11 +25205,6 @@ sentences:
   category: travel
   english: Layla got in the taxi.
   hindi: लैला टैक्सी में बैठ गयी।
-- id: tatoeba_5091
-  level: level_1
-  category: travel
-  english: Layla got raped.
-  hindi: लैला का बलात्कार हुआ।
 - id: tatoeba_5092
   level: level_1
   category: general
@@ -25531,16 +25220,6 @@ sentences:
   category: general
   english: Layla stood up.
   hindi: लैला खड़ी हुई।
-- id: tatoeba_5095
-  level: level_1
-  category: general
-  english: Layla was not raped.
-  hindi: लैला पर बलात्कार नहीं हुआ।
-- id: tatoeba_5096
-  level: level_1
-  category: general
-  english: Layla was not sexy.
-  hindi: लैला सेक्सी नहीं थी।
 - id: tatoeba_5097
   level: level_2
   category: general
@@ -25872,11 +25551,6 @@ sentences:
   category: general
   english: Let's follow Tom.
   hindi: टॉम का पीछा करते हैं।
-- id: tatoeba_5163
-  level: level_1
-  category: general
-  english: Let's fuck.
-  hindi: चोदते हैं।
 - id: tatoeba_5164
   level: level_2
   category: general
@@ -26351,11 +26025,6 @@ sentences:
   category: general
   english: Love is a game that two can play and both win.
   hindi: प्यार एक ऐसा खेल है जिसे दो व्यक्ति खेल सकते हैं और जिस में दोनों ही जीतते हैं।
-- id: tatoeba_5258
-  level: level_1
-  category: general
-  english: Love is better than sex.
-  hindi: सेक्स से बेहतर होता है प्यार।
 - id: tatoeba_5259
   level: level_1
   category: general
@@ -26531,16 +26200,6 @@ sentences:
   category: food
   english: Many people start their day with a cup of coffee.
   hindi: कई लोग अपने दिन की शुरुआत कॉफी के एक कप के साथ करते हैं।
-- id: tatoeba_5294
-  level: level_2
-  category: general
-  english: Many people were killed in the accident.
-  hindi: दुर्घटना में कई लोग मारे गये।
-- id: tatoeba_5295
-  level: level_1
-  category: general
-  english: Many soldiers were killed here.
-  hindi: यहाँ कई सारे सैनिक मारे गये थे।
 - id: tatoeba_5296
   level: level_3
   category: general
@@ -27026,16 +26685,6 @@ sentences:
   category: travel
   english: May we accompany you on your walk?
   hindi: हम तुम्हारे साथ सैर करने चलें क्या?
-- id: tatoeba_5393
-  level: level_3
-  category: general
-  english: Maybe I am unhappy, but I don't intend to kill myself.
-  hindi: हाँ शायद मैं दुखी हूँ, पर मुझे अपनी जान लेने का इरादा नहीं है।
-- id: tatoeba_5394
-  level: level_2
-  category: general
-  english: Maybe I'm unhappy, but I don't intend to kill myself.
-  hindi: हाँ शायद मैं दुखी हूँ, पर मुझे अपनी जान लेने का इरादा नहीं है।
 - id: tatoeba_5395
   level: level_1
   category: general
@@ -27101,26 +26750,11 @@ sentences:
   category: general
   english: Mennad and Baya were here.
   hindi: मेन्नाद और बाया यहाँ थे।
-- id: tatoeba_5408
-  level: level_1
-  category: general
-  english: Mennad fucks Baya.
-  hindi: मेन्नाद बाया को चोदता है।
-- id: tatoeba_5409
-  level: level_1
-  category: general
-  english: Mennad is fucking Baya.
-  hindi: मेन्नाद बाया को चोद रहा है।
 - id: tatoeba_5410
   level: level_1
   category: general
   english: Mennad likes Egyptian music.
   hindi: मेन्नाद को मिसरी संगीत पसंद है।
-- id: tatoeba_5411
-  level: level_1
-  category: general
-  english: Mennad was fucking Baya.
-  hindi: मेन्नाद बाया को चोद रहा था।
 - id: tatoeba_5412
   level: level_1
   category: work
@@ -27816,11 +27450,6 @@ sentences:
   category: family
   english: My grandfather was a farmer.
   hindi: मेरे दादा किसान थे।
-- id: tatoeba_5551
-  level: level_2
-  category: family
-  english: My grandfather was murdered during the Second World War.
-  hindi: दूसरे विश्वयुद्ध के दौरान मेरे दादा का खून हुआ था।
 - id: tatoeba_5552
   level: level_1
   category: family
@@ -29333,11 +28962,6 @@ sentences:
   category: general
   english: Only Tom knows the truth.
   hindi: सिर्फ़ टॉम को सच पता है.
-- id: tatoeba_5854
-  level: level_1
-  category: general
-  english: Only two Texans were killed.
-  hindi: केवल दो टेक्सन मारे गये।
 - id: tatoeba_5855
   level: level_2
   category: time
@@ -29568,11 +29192,6 @@ sentences:
   category: general
   english: Pat stripped off his clothes and dived in.
   hindi: पॅट ने अपने कपड़े उतार दिये और ग़ोता लगाया।
-- id: tatoeba_5901
-  level: level_3
-  category: general
-  english: Patriots always talk of dying for their country, and never of killing for their country.
-  hindi: देशप्रेमी हमेशा अपने देश के लिए मरने की बात करते हैं, कभी देश के लिए मारने की नहीं।
 - id: tatoeba_5902
   level: level_1
   category: general
@@ -30539,16 +30158,6 @@ sentences:
   category: general
   english: Sam joined the army when he was eighteen.
   hindi: सैम अठारह साल की उम्र में आर्मी में भर्ती हुआ था।
-- id: tatoeba_6094
-  level: level_1
-  category: general
-  english: Same-sex marriage is legal here.
-  hindi: यहाँ समलैंगिक विवाह वैध है।
-- id: tatoeba_6095
-  level: level_1
-  category: general
-  english: Sami and Layla are fucking.
-  hindi: सामी और लैला चोद रहे हैं।
 - id: tatoeba_6096
   level: level_2
   category: general
@@ -30559,11 +30168,6 @@ sentences:
   category: family
   english: Sami and Layla became friends.
   hindi: सामी और लैला दोस्त बन गये।
-- id: tatoeba_6098
-  level: level_2
-  category: general
-  english: Sami and Layla did their drugs together.
-  hindi: सामी और लैला ने एक साथ नशा किया।
 - id: tatoeba_6099
   level: level_1
   category: general
@@ -30609,21 +30213,6 @@ sentences:
   category: general
   english: Sami folded the clothes.
   hindi: सामी ने कपड़े घड़ी करे।
-- id: tatoeba_6108
-  level: level_1
-  category: general
-  english: Sami fucked his manager.
-  hindi: सामी ने अपने मैनेजर को चोदा।
-- id: tatoeba_6109
-  level: level_1
-  category: general
-  english: Sami fucked Layla.
-  hindi: सामी ने लैला को चोदा।
-- id: tatoeba_6110
-  level: level_1
-  category: general
-  english: Sami fucked many girls.
-  hindi: सामी ने कई लड़कियों को चोदा।
 - id: tatoeba_6111
   level: level_2
   category: general
@@ -30654,16 +30243,6 @@ sentences:
   category: general
   english: Sami hates customers like these.
   hindi: सामी को ऐसे ग्राहक पसंद नहीं हैं।
-- id: tatoeba_6117
-  level: level_1
-  category: general
-  english: Sami intended to rape Layla.
-  hindi: सामी का लैला पर बलात्कार करने का इरादा था।
-- id: tatoeba_6118
-  level: level_1
-  category: general
-  english: Sami is a killer.
-  hindi: सामी ख़ूनी है।
 - id: tatoeba_6119
   level: level_3
   category: general
@@ -30749,11 +30328,6 @@ sentences:
   category: general
   english: Sami made a plan.
   hindi: सामी ने एक योजना बनायी।
-- id: tatoeba_6136
-  level: level_2
-  category: general
-  english: Sami probably tried to rape Layla.
-  hindi: सामी ने शायद लैला पर बलात्कार करने की कोशिश की।
 - id: tatoeba_6137
   level: level_1
   category: general
@@ -30764,31 +30338,6 @@ sentences:
   category: general
   english: Sami purchased a gun.
   hindi: सामी ने बंदूक खरीदी।
-- id: tatoeba_6139
-  level: level_1
-  category: general
-  english: Sami raped a girl.
-  hindi: सामी ने एक लड़की पर बलात्कार किया।
-- id: tatoeba_6140
-  level: level_1
-  category: general
-  english: Sami raped Layla again.
-  hindi: सामी ने फिर से लैला पर बलात्कार किया।
-- id: tatoeba_6141
-  level: level_2
-  category: general
-  english: Sami raped Layla in his bedroom.
-  hindi: सामीने अपने बेडरूम में लैला पर बलात्कार किया।
-- id: tatoeba_6142
-  level: level_2
-  category: work
-  english: Sami raped Layla in his office.
-  hindi: सामी ने अपने दफ़्तर में लैला पर बलात्कार किया।
-- id: tatoeba_6143
-  level: level_1
-  category: food
-  english: Sami raped Layla repeatedly.
-  hindi: सामी ने लैला पर बारबार बलात्कार किया।
 - id: tatoeba_6144
   level: level_1
   category: general
@@ -30829,26 +30378,11 @@ sentences:
   category: general
   english: Sami tried to escape.
   hindi: सामी ने भाग निकलने की कोशिश की।
-- id: tatoeba_6152
-  level: level_1
-  category: general
-  english: Sami tried to rape Layla.
-  hindi: सामी ने लैला पर बलात्कार करने की कोशिश की।
 - id: tatoeba_6153
   level: level_1
   category: general
   english: Sami wanted another marriage.
   hindi: सामी दूसरी शादी करना चाहता था।
-- id: tatoeba_6154
-  level: level_2
-  category: general
-  english: Sami wanted to have sex with Layla.
-  hindi: सामी लैला के साथ सेक्स करना चाहता था।
-- id: tatoeba_6155
-  level: level_1
-  category: general
-  english: Sami wanted to rape Layla.
-  hindi: सामी लैला पर बलात्कार करना चाहता था।
 - id: tatoeba_6156
   level: level_1
   category: work
@@ -30874,26 +30408,6 @@ sentences:
   category: general
   english: Sami was completely different.
   hindi: सामी पूरी तरह से अलग था।
-- id: tatoeba_6161
-  level: level_2
-  category: general
-  english: Sami was fucking in his room.
-  hindi: सामी अपने कमरे में चोद रहा था।
-- id: tatoeba_6162
-  level: level_1
-  category: general
-  english: Sami was fucking Layla.
-  hindi: सामी लैला को चोद रहा था।
-- id: tatoeba_6163
-  level: level_1
-  category: general
-  english: Sami was fucking that girl.
-  hindi: सामी उस लड़की को चोद रहा था।
-- id: tatoeba_6164
-  level: level_1
-  category: general
-  english: Sami was fucking.
-  hindi: सामी चोद रहा था।
 - id: tatoeba_6165
   level: level_1
   category: general
@@ -30919,11 +30433,6 @@ sentences:
   category: general
   english: Sami was stupid.
   hindi: सामी बेवक़ूफ था।
-- id: tatoeba_6170
-  level: level_2
-  category: general
-  english: Sami was trying to rape Layla.
-  hindi: सामी लैला पर बलात्कार करने की कोशिश कर रहा था।
 - id: tatoeba_6171
   level: level_1
   category: general
@@ -31156,16 +30665,6 @@ sentences:
   category: general
   english: Several apples fell from the tree.
   hindi: पेड़ से कई सेब गिर गये।
-- id: tatoeba_6217
-  level: level_1
-  category: general
-  english: Sex is important to me.
-  hindi: सेक्स मेरे लिये महत्त्वपूर्ण है।
-- id: tatoeba_6218
-  level: level_1
-  category: general
-  english: Sex sells.
-  hindi: सेक्स बिकता है।
 - id: tatoeba_6219
   level: level_1
   category: general
@@ -31537,11 +31036,6 @@ sentences:
   category: time
   english: She died yesterday afternoon.
   hindi: उनकी मौत कल दोपहर को हुई थी।
-- id: tatoeba_6293
-  level: level_1
-  category: general
-  english: She doesn't like oral sex.
-  hindi: उसे मुख मैथुन पसंद नहीं है।
 - id: tatoeba_6294
   level: level_1
   category: general
@@ -32584,11 +32078,6 @@ sentences:
   category: general
   english: She thought she was in big trouble.
   hindi: उसको लगा कि वो बहुत बड़ी मुसीबत में है।
-- id: tatoeba_6502
-  level: level_1
-  category: food
-  english: She threatened to kill me.
-  hindi: उसने मुझे मारने की धमकी दी है।
 - id: tatoeba_6503
   level: level_2
   category: general
@@ -32599,11 +32088,6 @@ sentences:
   category: greetings
   english: She tried in vain to please him.
   hindi: उसने बेकार में उसको खुश करने की कोशिश की।
-- id: tatoeba_6505
-  level: level_2
-  category: time
-  english: She tried to kill herself last night.
-  hindi: उसने कल रात ख़ुद की जान लेने की कोशिश की।
 - id: tatoeba_6506
   level: level_2
   category: general
@@ -32834,11 +32318,6 @@ sentences:
   category: general
   english: She's a beauty from a distance.
   hindi: वह दूर से हसीना लगती है।
-- id: tatoeba_6552
-  level: level_2
-  category: general
-  english: She's a fan of Sex and the City.
-  hindi: वह "सेक्स एंड द सिटी" की शौकीन है।
 - id: tatoeba_6553
   level: level_1
   category: general
@@ -32914,11 +32393,6 @@ sentences:
   category: general
   english: She's getting old.
   tamil: வயசு ஆகது.
-- id: tatoeba_6568
-  level: level_1
-  category: travel
-  english: She's going to kill herself.
-  hindi: वह ख़ुद की जान लेने वाली है।
 - id: tatoeba_6569
   level: level_1
   category: general
@@ -33009,12 +32483,6 @@ sentences:
   category: general
   english: Shishir is following me.
   hindi: शिशिर मेरा पीछा कर रहा है।
-- id: tatoeba_6587
-  level: level_1
-  category: general
-  english: Shit.
-  tamil: சே.
-  hindi: धत् तेरे की.
 - id: tatoeba_6588
   level: level_3
   category: general
@@ -33336,11 +32804,6 @@ sentences:
   category: general
   english: Soccer is very popular in Spain.
   hindi: फुटबॉल स्पेन में बहुत लोकप्रिय है।
-- id: tatoeba_6652
-  level: level_2
-  category: general
-  english: 'Software is like sex: it''s better when it''s free.'
-  hindi: 'सॉफ़्टवेयर सेक्स की तरह होता है: मुफ़्त में मिले तो बेहतर।'
 - id: tatoeba_6653
   level: level_1
   category: general
@@ -36047,16 +35510,6 @@ sentences:
   category: travel
   english: The dragon saw her.
   hindi: ड्रैगन ने उसे देखा।
-- id: tatoeba_7193
-  level: level_2
-  category: general
-  english: The drug culture has its own rules.
-  hindi: ड्रग संस्कृति के अपने ही नियम होते हैं।
-- id: tatoeba_7194
-  level: level_2
-  category: travel
-  english: The drug smuggler was arrested at the airport.
-  hindi: दवा तस्कर हवाई अड्डे पर गिरफ्तार किया गया था।
 - id: tatoeba_7195
   level: level_3
   category: food
@@ -36607,11 +36060,6 @@ sentences:
   category: travel
   english: The king governed the country.
   hindi: राजा की देश पर हुकूमत थी।
-- id: tatoeba_7305
-  level: level_1
-  category: general
-  english: The king is naked!
-  hindi: राजा तो नंगा है!
 - id: tatoeba_7306
   level: level_2
   category: general
@@ -36632,11 +36080,6 @@ sentences:
   category: general
   english: The king rules over the country.
   hindi: राजा देश पर राज करता है।
-- id: tatoeba_7310
-  level: level_2
-  category: general
-  english: The king turned out to be naked.
-  hindi: राजा तो नंगा निकला।
 - id: tatoeba_7311
   level: level_2
   category: general
@@ -36752,11 +36195,6 @@ sentences:
   category: food
   english: The male peacock has colorful tail feathers.
   hindi: मोर की पूंछ के पंख रंग-बिरंगी होते हैं।
-- id: tatoeba_7334
-  level: level_1
-  category: general
-  english: The man committed murder.
-  hindi: उस आदमी ने कत्ल किया।
 - id: tatoeba_7335
   level: level_1
   category: food
@@ -36767,11 +36205,6 @@ sentences:
   category: general
   english: The man hit me on the head.
   hindi: उस आदमी ने मुझे सर पर मारा।
-- id: tatoeba_7337
-  level: level_1
-  category: general
-  english: The man is naked.
-  hindi: वह आदमी नंगा है।
 - id: tatoeba_7338
   level: level_1
   category: general
@@ -36807,11 +36240,6 @@ sentences:
   category: general
   english: The market is held every Monday.
   hindi: वह बाज़ार हर सोमवार को लगता है।
-- id: tatoeba_7345
-  level: level_2
-  category: general
-  english: The meaning of the word "sex" is often unclear.
-  hindi: '"सेक्स" शब्द का मतलब अक्सर अस्पष्ट होता है।'
 - id: tatoeba_7346
   level: level_2
   category: food
@@ -36882,11 +36310,6 @@ sentences:
   category: food
   english: The most commonly reported flu symptoms are fever, chills, sweating, asthenia, headache and nausea.
   hindi: फ्लू के सर्वाधिक सामान्य लक्षणों में ज्वर, ठंड लगना, पसीना, शक्तिहीनता, सिरदर्द और मतली शामिल हैं।
-- id: tatoeba_7360
-  level: level_2
-  category: general
-  english: The most important sex organ is the brain.
-  hindi: सबसे महत्त्वपूर्ण यौन अंग होता है दिमाग।
 - id: tatoeba_7361
   level: level_3
   category: general
@@ -37217,11 +36640,6 @@ sentences:
   category: general
   english: The police are after me.
   hindi: पुलीस मेरे पीछे पड़ें हैं।
-- id: tatoeba_7427
-  level: level_2
-  category: general
-  english: The police arrested the man who had murdered the girl.
-  hindi: पुलिस ने उस लड़की के क़ातिल को हरासत में ले लिया।
 - id: tatoeba_7428
   level: level_2
   category: work
@@ -37232,11 +36650,6 @@ sentences:
   category: general
   english: The police still can't point out who committed the crime.
   hindi: पुलिस को अब तक इस बात की जानकारी नहीं है कि जुर्म किसने किया है।
-- id: tatoeba_7430
-  level: level_2
-  category: general
-  english: The police tried hard to unravel the mystery of killing.
-  hindi: पुलिस ने हत्या की गुथी को सुलझाने के लिए कड़ा प्रयास किया।
 - id: tatoeba_7431
   level: level_2
   category: general
@@ -37968,11 +37381,6 @@ sentences:
   category: general
   english: The ticket for your return journey has been arranged for.
   hindi: आपके लौटने की टिकट का बंदोबस्त हो गया है।
-- id: tatoeba_7577
-  level: level_3
-  category: general
-  english: The tiger caught the guy's neck and killed him by pulling it.
-  hindi: बाघ ने युवक की गर्दन पकड़ी और खींचकर मार डाला।
 - id: tatoeba_7578
   level: level_2
   category: general
@@ -38258,11 +37666,6 @@ sentences:
   category: general
   english: The wolves of different countries vary in colour, form and behaviour based on the climate.
   hindi: विभिन्न देशों की लोमड़ियों में वहाँ की जलवायु के अनुसार रंग, आकृति और स्वभाव में अंतर होता है।
-- id: tatoeba_7635
-  level: level_1
-  category: general
-  english: The woman is naked.
-  hindi: वह औरत नंगी है।
 - id: tatoeba_7636
   level: level_2
   category: general
@@ -38959,11 +38362,6 @@ sentences:
   category: general
   english: There were two cakes. I ate one and then I ate the other.
   hindi: दो केक थे। मैंने एक खाया और फिर मैंने दूसरा खाया।
-- id: tatoeba_7775
-  level: level_2
-  category: general
-  english: There were two murders this month.
-  hindi: इस महीने दो क़त्ल हुए हैं।
 - id: tatoeba_7776
   level: level_2
   category: family
@@ -40010,11 +39408,6 @@ sentences:
   category: general
   english: They want to change the law.
   hindi: वह कानून बदलना चाहते हैं।
-- id: tatoeba_7985
-  level: level_2
-  category: general
-  english: They want to rape our women.
-  hindi: वे हमारी महिलाओं पर बलात्कार करना चाहते हैं।
 - id: tatoeba_7986
   level: level_1
   category: general
@@ -40070,11 +39463,6 @@ sentences:
   category: general
   english: They were born in Thailand.
   hindi: वे थाइलैंड में जन्मे थे।
-- id: tatoeba_7997
-  level: level_1
-  category: general
-  english: They were both naked.
-  hindi: वे दोनों नंगे थे।
 - id: tatoeba_7998
   level: level_2
   category: general
@@ -40145,11 +39533,6 @@ sentences:
   category: general
   english: They will get married next month.
   hindi: उनकी शादी अगले महीने होगी।
-- id: tatoeba_8012
-  level: level_1
-  category: general
-  english: They will kill me.
-  hindi: वे लोग मुझे मार डालेंगे।
 - id: tatoeba_8013
   level: level_3
   category: general
@@ -40375,11 +39758,6 @@ sentences:
   category: general
   english: Think about it.
   hindi: सोच लो।
-- id: tatoeba_8058
-  level: level_1
-  category: general
-  english: Thirty-thousand people were killed.
-  hindi: तीस हजार लोग मारे गये।
 - id: tatoeba_8059
   level: level_2
   category: work
@@ -41125,11 +40503,6 @@ sentences:
   category: family
   english: This is the house where I lived when I was a child.
   hindi: यह वह घर है जिसमें मैं रहता था जब मैं छोटा था।
-- id: tatoeba_8208
-  level: level_2
-  category: general
-  english: This is the man who raped you.
-  hindi: यही वह आदमी है जिसने तुम पर बलात्कार किया।
 - id: tatoeba_8209
   level: level_1
   category: general
@@ -41815,11 +41188,6 @@ sentences:
   category: general
   english: To distinguish right from wrong is difficult.
   hindi: सही और ग़लत में अंतर करना मुश्किल होता है।
-- id: tatoeba_8346
-  level: level_2
-  category: travel
-  english: To go out half-naked is shameful.
-  hindi: अधनंगे बाहर जाना बहुत शर्मदार होता है।
 - id: tatoeba_8347
   level: level_2
   category: food
@@ -43201,11 +42569,6 @@ sentences:
   category: general
   english: Tom has seen this.
   hindi: टॉम ने यह देखा है।
-- id: tatoeba_8623
-  level: level_1
-  category: general
-  english: Tom has sex with Mary.
-  hindi: टॉम मैरी के साथ सेक्स करता है।
 - id: tatoeba_8624
   level: level_1
   category: general
@@ -43726,11 +43089,6 @@ sentences:
   category: general
   english: Tom is my uncle.
   hindi: टॉम मेरा मामा है।
-- id: tatoeba_8728
-  level: level_1
-  category: general
-  english: Tom is naked.
-  hindi: टॉम नंगा है।
 - id: tatoeba_8729
   level: level_1
   category: general
@@ -43931,16 +43289,6 @@ sentences:
   category: general
   english: Tom is the enemy.
   hindi: टॉम दुशमन है।
-- id: tatoeba_8769
-  level: level_1
-  category: general
-  english: Tom is the killer.
-  hindi: हत्यारा टॉम है।
-- id: tatoeba_8770
-  level: level_1
-  category: general
-  english: Tom is the murderer.
-  hindi: खूनी टॉम है।
 - id: tatoeba_8771
   level: level_2
   category: general
@@ -44096,11 +43444,6 @@ sentences:
   category: general
   english: Tom isn't like you.
   hindi: टॉम तुम्हारी तरह नहीं है।
-- id: tatoeba_8802
-  level: level_1
-  category: general
-  english: Tom isn't naked.
-  hindi: टॉम नंगा नहीं है।
 - id: tatoeba_8803
   level: level_1
   category: general
@@ -44211,11 +43554,6 @@ sentences:
   category: time
   english: Tom kept crying all night.
   hindi: टॉम रात भर रोता रहा।
-- id: tatoeba_8825
-  level: level_2
-  category: general
-  english: Tom killed Mary with a knife.
-  hindi: टॉम ने मैरी को चाकू से मारा।
 - id: tatoeba_8826
   level: level_1
   category: general
@@ -44506,11 +43844,6 @@ sentences:
   category: food
   english: Tom needs water.
   hindi: टॉम को पानी की ज़रूरत है।
-- id: tatoeba_8884
-  level: level_2
-  category: general
-  english: Tom never denied that he killed Mary.
-  hindi: टॉम ने इस बात से कभी इनकार नहीं किया कि उसने मैरी को मार डाला।
 - id: tatoeba_8885
   level: level_1
   category: travel
@@ -45451,11 +44784,6 @@ sentences:
   category: general
   english: Tom was looking at me.
   hindi: टॉम मुझे देख रहा था।
-- id: tatoeba_9073
-  level: level_1
-  category: general
-  english: Tom was naked.
-  hindi: टॉम नंगा था।
 - id: tatoeba_9074
   level: level_1
   category: general
@@ -45486,11 +44814,6 @@ sentences:
   category: general
   english: Tom was probably lying.
   hindi: टॉम शायद झूठ बोल रहा था।
-- id: tatoeba_9080
-  level: level_2
-  category: family
-  english: Tom was raped by his father.
-  hindi: टॉम के पिता ने उस पर बलात्कार किया।
 - id: tatoeba_9081
   level: level_1
   category: general
@@ -45696,11 +45019,6 @@ sentences:
   category: general
   english: Tom wasn't surprised.
   hindi: टॉम को आश्चर्य नहीं हुआ था।
-- id: tatoeba_9122
-  level: level_3
-  category: general
-  english: Tom wasn't the only one who was one drunk at the party.
-  hindi: टॉम ही अकेला नहीं था जो पार्टी में नशे में था।
 - id: tatoeba_9123
   level: level_1
   category: general
@@ -46411,11 +45729,6 @@ sentences:
   category: general
   english: 'Two hunters meet: both are dead.'
   hindi: 'दो शिकारी मिलते हैं: दोनों मर गये हैं।'
-- id: tatoeba_9265
-  level: level_1
-  category: general
-  english: Two Indians were killed.
-  hindi: दो भारतीय मारे गये।
 - id: tatoeba_9266
   level: level_2
   category: general
@@ -46431,11 +45744,6 @@ sentences:
   category: food
   english: Two teas and a coffee, please.
   hindi: दो चाय और एक कॉफ़ी दीजिए।
-- id: tatoeba_9269
-  level: level_2
-  category: general
-  english: Two thousand American soldiers were killed.
-  hindi: दो हज़ार अमरीकी सैनिक मारे गये।
 - id: tatoeba_9270
   level: level_2
   category: travel
@@ -47237,11 +46545,6 @@ sentences:
   category: general
   english: We don't even know Tom.
   hindi: हम तो टॉम को जानते तक नहीं।
-- id: tatoeba_9430
-  level: level_1
-  category: general
-  english: We don't have sex anymore.
-  hindi: अभी हम सेक्स नहीं करते।
 - id: tatoeba_9431
   level: level_1
   category: food
@@ -47607,11 +46910,6 @@ sentences:
   category: general
   english: We lost.
   hindi: हम हार गए।
-- id: tatoeba_9504
-  level: level_2
-  category: general
-  english: We love each other, but we don't have sex anymore.
-  hindi: हम एक दूसरे से प्यार करते हैं, मगर अब हम सेक्स नहीं करते।
 - id: tatoeba_9505
   level: level_1
   category: general
@@ -48868,11 +48166,6 @@ sentences:
   category: general
   english: What about us?
   hindi: हमारा क्या?
-- id: tatoeba_9756
-  level: level_1
-  category: general
-  english: What an asshole!
-  hindi: क्या चूतिया है!
 - id: tatoeba_9757
   level: level_2
   category: general
@@ -49493,11 +48786,6 @@ sentences:
   category: general
   english: What is microeconomics?
   hindi: सूक्ष्मअर्थशास्त्र क्या होता है?
-- id: tatoeba_9881
-  level: level_1
-  category: general
-  english: What is oral sex?
-  hindi: मुख मैथुन क्या होता है?
 - id: tatoeba_9882
   level: level_1
   category: general
@@ -49828,11 +49116,6 @@ sentences:
   category: general
   english: What sports do you like?
   hindi: तुम्हें कौनसे खेल पसंद है?
-- id: tatoeba_9948
-  level: level_2
-  category: general
-  english: What the fuck do you think you're doing?
-  hindi: साले, तू क्या कर रहा है?
 - id: tatoeba_9949
   level: level_2
   category: general
@@ -51925,11 +51208,6 @@ sentences:
   category: general
   english: Who wrote this letter?
   hindi: यह पत्र किसने लिखा?
-- id: tatoeba_10366
-  level: level_1
-  category: general
-  english: Who'd want to kill you?
-  hindi: तुम्हें कौन मारना चाहेगा?
 - id: tatoeba_10367
   level: level_1
   category: general
@@ -52817,11 +52095,6 @@ sentences:
   category: general
   english: Women change the world.
   hindi: महिलाएँ दुनिया बदल देती हैं।
-- id: tatoeba_10544
-  level: level_2
-  category: general
-  english: Women want to have sex too.
-  hindi: महिलाएं भी सेक्स करना चाहतीं हैं।
 - id: tatoeba_10545
   level: level_2
   category: travel
@@ -53018,11 +52291,6 @@ sentences:
   category: general
   english: Yanni and Skura were both living there.
   hindi: यान्नी और स्कुरा दोनों वहाँ रह रहे थे।
-- id: tatoeba_10584
-  level: level_2
-  category: general
-  english: Yanni and Skura were both raped.
-  hindi: यान्नी और स्कुरा दोनों पर बलात्कार हुआ।
 - id: tatoeba_10585
   level: level_1
   category: general
@@ -53585,11 +52853,6 @@ sentences:
   category: food
   english: You can't eat your cake and have it too.
   hindi: तुम "चित भी मेरी पट भी मेरी" नहीं कर सकते।
-- id: tatoeba_10697
-  level: level_2
-  category: travel
-  english: You can't go naked in this hotel.
-  hindi: तुम इस होटेल में नंगे नहीं जा सकते।
 - id: tatoeba_10698
   level: level_2
   category: general
@@ -54310,11 +53573,6 @@ sentences:
   category: work
   english: You quit your job, didn't you?
   hindi: आपने अपनी नौकरी छोड़ दी, हैं ना?
-- id: tatoeba_10842
-  level: level_1
-  category: general
-  english: You raped him!
-  hindi: तुम ने उसका बलात्कार किया!
 - id: tatoeba_10843
   level: level_1
   category: general
@@ -55035,11 +54293,6 @@ sentences:
   category: general
   english: You're our prisoner.
   hindi: तुम हमारे कैदी हो।
-- id: tatoeba_10987
-  level: level_1
-  category: general
-  english: You're quite drunk.
-  hindi: तुमने काफ़ी पी रखी है।
 - id: tatoeba_10988
   level: level_1
   category: general
@@ -55330,11 +54583,6 @@ sentences:
   category: general
   english: Your penis is small.
   hindi: तुम्हारा शिश्न छोटा है।
-- id: tatoeba_11046
-  level: level_2
-  category: general
-  english: Your people are killing Muslims in Afghanistan.
-  hindi: तुम्हारे लोग अफग़ानिस्तान में मुसलमानों का क़त्ल कर रहे हैं।
 - id: tatoeba_11047
   level: level_2
   category: general
@@ -55415,11 +54663,6 @@ sentences:
   category: general
   english: Ziri had a gun.
   hindi: ज़िरी के पास एक बंदूक थी।
-- id: tatoeba_11063
-  level: level_2
-  category: general
-  english: Ziri had sex in the garage.
-  hindi: ज़िरी ने गैरेज में सेक्स किया।
 - id: tatoeba_11064
   level: level_1
   category: general
