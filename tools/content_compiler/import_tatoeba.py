@@ -144,6 +144,25 @@ def is_mature_content(english: str) -> bool:
     return bool(MATURE_CONTENT_PATTERN.search(english))
 
 
+_SENTENCE_START_CHARS = ('"', "'", "“", "‘")
+_SENTENCE_END_CHARS = (".", "!", "?", '"', "'", "”", "’")
+
+
+def fails_grammar_sanity(english: str) -> bool:
+    """Mirrors compile.py's _validate_sentence_grammar — filtered here
+    too so a bad Tatoeba artifact (e.g. mismatched curly-quote pairing
+    from an upstream encoding quirk) doesn't just move the hard failure
+    from "at import time, one obvious cause" to "at compile time, buried
+    in 10,000+ generated rows"."""
+    stripped = english.strip()
+    if not stripped:
+        return True
+    first = stripped[0]
+    if not (first.isupper() or first.isdigit() or first in _SENTENCE_START_CHARS):
+        return True
+    return not stripped.endswith(_SENTENCE_END_CHARS)
+
+
 def main():
     hin_sentences = load_sentences(TATOEBA_DIR / "hin_sentences.tsv")
     tam_sentences = load_sentences(TATOEBA_DIR / "tam_sentences.tsv")
@@ -164,6 +183,7 @@ def main():
 
     entries = []
     mature_filtered = 0
+    grammar_filtered = 0
     for idx, key in enumerate(new_keys):
         hin = hin_pairs.get(key)
         tam = tam_pairs.get(key)
@@ -173,6 +193,9 @@ def main():
             continue
         if is_mature_content(english):
             mature_filtered += 1
+            continue
+        if fails_grammar_sanity(english):
+            grammar_filtered += 1
             continue
 
         entry = {
@@ -207,6 +230,7 @@ def main():
     print(f"tam-eng pairs available: {len(tam_pairs)}")
     print(f"Already in hand-authored sentences.yaml (skipped): {len(all_keys & existing_keys)}")
     print(f"Filtered for mature content (profanity/sexual/violent-crime themes): {mature_filtered}")
+    print(f"Filtered for grammar sanity (malformed/corrupted text): {grammar_filtered}")
     print(f"New sentences written: {len(entries)}")
     print(f"  trilingual (en+ta+hi): {both}")
     print(f"  english+hindi only: {only_hin}")

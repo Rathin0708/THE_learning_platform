@@ -108,6 +108,69 @@ class MissingFieldError(ContentValidationError):
     pass
 
 
+class GrammarError(ContentValidationError):
+    pass
+
+
+class TranslationError(ContentValidationError):
+    pass
+
+
+class PronunciationError(ContentValidationError):
+    pass
+
+
+# Curly/straight quote and apostrophe variants count as valid sentence
+# boundaries alongside the plain terminal punctuation marks — real
+# sentence sources (Tatoeba included) end mid-quote as often as not.
+_SENTENCE_START_CHARS = ('"', "'", "“", "‘")
+_SENTENCE_END_CHARS = (".", "!", "?", '"', "'", "”", "’")
+
+
+def _validate_sentence_grammar(text: str, context: str):
+    """Lightweight structural sanity check (spec 5.3's "Grammar
+    Validation" stage) — not real grammar checking, just catches the
+    class of artifact a corrupted/malformed import would produce: starts
+    with a capital letter/digit/opening quote, ends with terminal
+    punctuation."""
+    stripped = text.strip()
+    if not stripped:
+        raise GrammarError(f"{context}: empty text")
+    first = stripped[0]
+    if not (first.isupper() or first.isdigit() or first in _SENTENCE_START_CHARS):
+        raise GrammarError(f"{context}: does not start with a capital letter/digit/quote: {stripped!r}")
+    if not stripped.endswith(_SENTENCE_END_CHARS):
+        raise GrammarError(f"{context}: does not end with terminal punctuation: {stripped!r}")
+
+
+def _validate_translation(text: str, source: str, context: str):
+    """Translation Validation stage: catches empty translations and the
+    common "left untranslated" bug where a translation field is a
+    verbatim copy of the source text."""
+    stripped = text.strip()
+    if not stripped:
+        raise TranslationError(f"{context}: empty translation")
+    if normalize(stripped) == normalize(source):
+        raise TranslationError(f"{context}: translation is identical to the source (likely untranslated): {stripped!r}")
+
+
+def _validate_pronunciation(ipa, roman, context: str):
+    """Pronunciation Validation stage: IPA must be non-empty and wrapped
+    in the conventional / / (phonemic) or [ ] (phonetic) delimiters;
+    romanization must be non-empty when the key is present at all."""
+    if ipa is not None:
+        stripped = ipa.strip()
+        if not stripped:
+            raise PronunciationError(f"{context}: empty IPA field (omit the key instead of an empty string)")
+        wrapped = (stripped.startswith("/") and stripped.endswith("/")) or (
+            stripped.startswith("[") and stripped.endswith("]")
+        )
+        if not wrapped:
+            raise PronunciationError(f"{context}: IPA {stripped!r} is not wrapped in / / or [ ]")
+    if roman is not None and not roman.strip():
+        raise PronunciationError(f"{context}: empty romanization field (omit the key instead of an empty string)")
+
+
 class ContentCompiler:
     def __init__(self, source_dir: Path, out_path: Path):
         self.source_dir = source_dir
@@ -174,6 +237,8 @@ class ContentCompiler:
                 categories_seen.add(category)
                 cur.execute("INSERT OR IGNORE INTO categories (name) VALUES (?)", (category,))
 
+            english_word = (concept.get("english") or {}).get("word")
+
             lang_ids_this_concept = {}
             for lang_code in ("english", "tamil", "hindi"):
                 entry = concept.get(lang_code)
@@ -186,6 +251,10 @@ class ContentCompiler:
                 if dedup_key in self.seen_words:
                     raise DuplicateError(f"Duplicate word detected: {dedup_key} (concept {concept_id})")
                 self.seen_words.add(dedup_key)
+
+                if code != "en" and english_word:
+                    _validate_translation(word_text, english_word, f"word concept {concept_id!r} ({code})")
+                _validate_pronunciation(entry.get("ipa"), entry.get("roman"), f"word concept {concept_id!r} ({code})")
 
                 cur.execute(
                     "INSERT INTO words (language_id, word, normalized_word, type, level, "
@@ -249,6 +318,8 @@ class ContentCompiler:
                 raise DuplicateError(f"Duplicate sentence detected: {s['id']}")
             seen_texts.add(dedup_key)
 
+            _validate_sentence_grammar(english, f"sentence {s['id']!r}")
+
             cur.execute(
                 "INSERT INTO sentences (level, category, source_language, source_text) "
                 "VALUES (?,?,?,?)",
@@ -261,6 +332,8 @@ class ContentCompiler:
                 text = s.get(key)
                 if not text:
                     continue
+                if lang_code != "en":
+                    _validate_translation(text, english, f"sentence {s['id']!r} ({lang_code})")
                 cur.execute(
                     "INSERT INTO sentence_translations (sentence_id, language, translated_text) "
                     "VALUES (?,?,?)",
