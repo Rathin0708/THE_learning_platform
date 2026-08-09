@@ -44,4 +44,12 @@ void main() {
       expect(result.perWord, isEmpty);
     });
   });
+
+  group('AudioPlayerService (THE-43)', () {
+    test('playFile() with a blank path is a no-op (error) and never touches the platform channel', () async {
+      final service = AudioPlayerService();
+      final result = await service.playFile('');
+      expect(result, AudioPlaybackResult.error);
+    });
+  });
 }

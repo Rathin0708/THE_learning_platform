@@ -23,11 +23,20 @@ class SpeechToTextService {
   final stt.SpeechToText _speech = stt.SpeechToText();
   final WhisperFallbackService _whisperFallback = WhisperFallbackService();
   bool? _available;
+  bool _permissionDenied = false;
 
   Future<bool> _ensureInitialized() async {
     if (_available != null) return _available!;
     try {
-      _available = await _speech.initialize();
+      _available = await _speech.initialize(
+        // The plugin reports OS mic/speech-permission denial through this
+        // error listener (errorMsg == 'error_permission') rather than
+        // through the returned bool, which is otherwise indistinguishable
+        // from "no recognizer available on this device" (THE-39).
+        onError: (error) {
+          if (error.errorMsg == 'error_permission') _permissionDenied = true;
+        },
+      );
     } catch (_) {
       _available = false;
     }
@@ -39,6 +48,12 @@ class SpeechToTextService {
   /// the user never stops speaking.
   Future<AsrOutcome> listenOnce(LanguageCode language, {Duration timeout = const Duration(seconds: 8)}) async {
     final onDeviceResult = await _listenOnceOnDevice(language, timeout: timeout);
+    if (onDeviceResult.result == AsrResult.permissionDenied) {
+      // Whisper's fallback recorder needs the same OS microphone
+      // permission, so retrying through it would just fail identically —
+      // surface the actionable state directly instead.
+      return onDeviceResult;
+    }
     if (onDeviceResult.result != AsrResult.unavailable) return onDeviceResult;
 
     // OS on-device recognizer isn't available for this language/device —
@@ -48,7 +63,9 @@ class SpeechToTextService {
 
   Future<AsrOutcome> _listenOnceOnDevice(LanguageCode language, {required Duration timeout}) async {
     final initialized = await _ensureInitialized();
-    if (!initialized) return const AsrOutcome(AsrResult.unavailable, null);
+    if (!initialized) {
+      return AsrOutcome(_permissionDenied ? AsrResult.permissionDenied : AsrResult.unavailable, null);
+    }
 
     final localeId = _localeIdFor(language);
     final hasOnDeviceLocale = await _supportsOnDevice(localeId);
@@ -98,7 +115,7 @@ class SpeechToTextService {
   Future<void> stop() => _speech.stop();
 }
 
-enum AsrResult { recognized, unavailable, noSpeechDetected, error }
+enum AsrResult { recognized, unavailable, noSpeechDetected, error, permissionDenied }
 
 class AsrOutcome {
   final AsrResult result;

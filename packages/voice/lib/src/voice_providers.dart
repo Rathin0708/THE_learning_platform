@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'audio_player_service.dart';
 import 'pronunciation_analyzer.dart';
 import 'speech_to_text_service.dart';
 import 'text_to_speech_service.dart';
@@ -13,3 +14,5 @@ final speechToTextServiceProvider = Provider<SpeechToTextService>((ref) => ref.w
 
 final pronunciationAnalyzerProvider =
     Provider<PronunciationAnalyzer>((ref) => ref.watch(voiceServiceProvider).pronunciation);
+
+final audioPlayerServiceProvider = Provider<AudioPlayerService>((ref) => ref.watch(voiceServiceProvider).player);

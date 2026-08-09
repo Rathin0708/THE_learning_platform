@@ -17,6 +17,8 @@ dependencies:
   record: ^6.0.0
   path_provider: ^2.1.5
   universal_io: ^2.2.2
+  just_audio: ^0.10.6
+  just_audio_windows: ^0.2.3
   core:
     path: ../core
 

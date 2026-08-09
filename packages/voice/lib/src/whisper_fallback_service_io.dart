@@ -64,7 +64,7 @@ class WhisperFallbackService {
     if (!ready) return const AsrOutcome(AsrResult.unavailable, null);
 
     if (!await _recorder.hasPermission()) {
-      return const AsrOutcome(AsrResult.unavailable, null);
+      return const AsrOutcome(AsrResult.permissionDenied, null);
     }
 
     Stream<Uint8List> pcmStream;

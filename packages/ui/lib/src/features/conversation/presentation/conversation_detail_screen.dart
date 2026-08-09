@@ -142,16 +142,19 @@ class _YourTurnPromptState extends ConsumerState<_YourTurnPrompt> {
 
   Widget _buildFeedback() {
     final outcome = _outcome!;
-    String message;
-    if (outcome.result == AsrResult.unavailable) {
-      message = 'On-device speech recognition isn\'t available on this device.';
-    } else if (outcome.result == AsrResult.noSpeechDetected) {
-      message = 'Didn\'t catch that.';
-    } else if (outcome.result == AsrResult.error) {
-      message = 'Could not start the microphone.';
-    } else {
-      final match = _match!;
-      message = match.matched ? 'Nice — that matches!' : 'Heard: "${outcome.text}" — not quite, but let\'s continue.';
+    final String message;
+    switch (outcome.result) {
+      case AsrResult.unavailable:
+        message = 'On-device speech recognition isn\'t available on this device.';
+      case AsrResult.permissionDenied:
+        message = 'Microphone permission is needed to continue. Enable it in system settings.';
+      case AsrResult.noSpeechDetected:
+        message = 'Didn\'t catch that.';
+      case AsrResult.error:
+        message = 'Could not start the microphone.';
+      case AsrResult.recognized:
+        final match = _match!;
+        message = match.matched ? 'Nice — that matches!' : 'Heard: "${outcome.text}" — not quite, but let\'s continue.';
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

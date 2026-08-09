@@ -75,6 +75,8 @@ class _SpeakPracticeCardState extends ConsumerState<SpeakPracticeCard> {
     switch (outcome.result) {
       case AsrResult.unavailable:
         return const Text('On-device speech recognition isn\'t available for this language on this device.');
+      case AsrResult.permissionDenied:
+        return const Text('Microphone permission is needed to practice speaking. Enable it in system settings.');
       case AsrResult.noSpeechDetected:
         return const Text('Didn\'t catch that — try again.');
       case AsrResult.error:
